@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	lang="en">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="" />
+<meta name="author" content="Simplicity Itself" />
+
+<title>Configurator Login</title>
+
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet"
+	media="all" th:href="@{/resources/css/bootstrap.min.css}">
+</link>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"
+	th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js}"></script>
+
+<script type="text/javascript" src="/resources/js/bootstrap.min.js"
+	th:src="@{/resources/js/bootstrap.min.js}"></script>
+<script type="text/javascript" src="/resources/js/bootstrap.js"
+	th:src="@{/resources/js/bootstrap.js}"></script>
+
+<!-- See http://twitter.github.com/bootstrap/scaffolding.html#responsive -->
+<link href="/resources/css/bootstrap-responsive.min.css"
+	rel="stylesheet">
+</link>
+
+
+</head>
+
+<body tiles:fragment="content">
+
+	<h3>&Uuml;bersicht der Veranstaltungen</h3>
+
+	<br />
+
+	<table class="table table-striped">
+		<tr>
+			<th>VA Name</th>
+			<th>Datum</th>
+			<th>Strasse</th>
+			<th>Ort</th>
+			<th>Geb&auml;ude/Platz</th>
+			<th>Typ</th>
+			<th>Catering</th>
+			<th>Art</th>
+			<th>Anzahl Essen</th>
+			<th>Trinken</th>
+			<th>Anzahl G&auml;sete</th>
+			<th>Security</th>
+			<th>Erwartete G&auml;ste</th>
+			<th>Beleuchtung</th>
+			<th>Art</th>
+			<th>Raumgr&ouml;sse</th>
+			<th>B&uuml;hnengr&ouml;sse</th>
+			<th>Audio</th>
+			<th>Art</th>
+			<th>Raumgr&ouml;sse</th>
+			<th>Personenzahl</th>
+			<th>Rigging</th>
+			<th>Art</th>
+			<th>B&uuml;hnengr&ouml;sse</th>
+			<th>Betreff</th>
+			<th>Zusatzinfo</th>						
+		</tr>
+		<tr th:each="event  : ${events}">
+			<td th:text="${event.name}">...</td>
+			<td th:text="${event.date}">...</td>
+			<td th:text="${event.location.street}">...</td>
+			<td th:text="${event.location.town}">...</td>
+			<td th:text="${event.location.name}">...</td>
+			<td th:text="${event.location.type}">...</td>
+			<td th:text="${event.catering.eating}">...</td>
+			<td th:text="${event.catering.eatingType}">...</td>
+			<td th:text="${event.catering.eatingPeople}">...</td>
+			<td th:text="${event.catering.drinking}">...</td>
+			<td th:text="${event.catering.drinkingPeople}">...</td>
+			<td th:text="${event.security.securityNeeded}">...</td>
+			<td th:text="${event.security.numberOfProtectees}">...</td>
+			<td th:text="${event.light.lightsNeeded}">...</td>
+			<td th:text="${event.light.lightType}">...</td>		
+			<td th:text="${event.light.roomSize}">...</td>
+			<td th:text="${event.light.stageSize}">...</td>
+			<td th:text="${event.audio.audioNeeded}">...</td>
+			<td th:text="${event.audio.audioType}">...</td>
+			<td th:text="${event.audio.roomSize}">...</td>
+			<td th:text="${event.audio.numberGuests}">...</td>
+			<td th:text="${event.rigging.riggingNeeded}">...</td>
+			<td th:text="${event.rigging.riggingType}">...</td>
+			<td th:text="${event.rigging.stageSize}">...</td>
+			<th th:text="${event.specialty.subject}">...</th>
+			<td th:text="${event.specialty.comment}">...</td>
+		</tr>
+	</table>
+
+</body>
+</html>

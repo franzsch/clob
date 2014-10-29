@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org" lang="en">
+
+<head>
+
+</head>
+<body tiles:fragment="content">
+	<div class="container">
+		<!--  <form th:action="@{/admin}" method="get">-->
+		<form th:action="@{/admin/j_spring_security_check}" method="post"
+			class="form-signin" role="form">
+			<h2 class="form-signin-heading">Bitte Anmelden</h2>
+
+			<input type="text" id="j_username" name="j_username"
+				class="form-control" autofocus="" required=""
+				placeholder="Benutzername" /> 
+			<input type="password"
+				id="j_password" name="j_password" class="form-control"
+				required="" placeholder="Passwort" />
+
+			<!--  <input type="submit" value="Log in" class="btn btn-lg btn-primary btn-block"/>-->
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Anmelden</button>
+				
+				<div class="alert alert-danger" th:if="${loginError}">Zugangsdaten nicht korrekt</div>
+			<a href="/user/new"><h5 class="form-register-link">Neuen Account anlegen</h5></a>	
+		</form>	
+	</div>
+</body>
+</html>
