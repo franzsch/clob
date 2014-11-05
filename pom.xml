@@ -293,13 +293,7 @@
 			<version>${jodatime-hibernate.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<version>${hsqldb.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		
+
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -420,10 +414,11 @@
 		</dependency>
 
 		<!-- Spring Webflow -->
+
 		<dependency>
-			<groupId>org.springframework.webflow</groupId>
-			<artifactId>spring-webflow</artifactId>
-			<version>2.3.3.RELEASE</version>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.182</version>
 		</dependency>
 
 	</dependencies>

@@ -33,6 +33,7 @@
 
 		<property name="warnLogCategory" value="warn" />
 
+<!-- 
 		<property name="excludedExceptions">
 			<list>
 				<value>org.springframework.webflow.execution.FlowExecutionException
@@ -42,7 +43,7 @@
 
 			</list>
 		</property>
-
+ -->
 	</bean>
 
 
