@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<import resource="mvc-view-config.xml" />
+	
 
 	<!-- - POJOs labeled with the @Controller and @Service annotations are auto-detected. -->
 	<context:component-scan base-package="de.hs.furtwangen.bam.spots.web" />
@@ -33,6 +33,7 @@
 
 		<property name="warnLogCategory" value="warn" />
 
+<!-- 
 		<property name="excludedExceptions">
 			<list>
 				<value>org.springframework.webflow.execution.FlowExecutionException
@@ -42,7 +43,7 @@
 
 			</list>
 		</property>
-
+ -->
 	</bean>
 
 

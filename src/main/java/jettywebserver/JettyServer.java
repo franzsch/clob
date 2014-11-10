@@ -8,7 +8,6 @@ import org.eclipse.jetty.server.handler.DefaultHandler;
 import org.eclipse.jetty.server.handler.HandlerCollection;
 import org.eclipse.jetty.util.resource.ResourceCollection;
 import org.eclipse.jetty.webapp.WebAppContext;
-import org.eclipse.jetty.websocket.jsr356.server.deploy.WebSocketServerContainerInitializer;
 
 public class JettyServer 
 {
@@ -34,7 +33,7 @@ public class JettyServer
 		server.setHandler(handlers);
 
 		// Initialize javax.websocket layer
-		WebSocketServerContainerInitializer.configureContext(context);
+		//WebSocketServerContainerInitializer.configureContext(context);
 		server.start();
 		server.join();
 	}
