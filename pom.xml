@@ -64,12 +64,10 @@
 		<jodatime.version>2.2</jodatime.version>
 		<jadira-usertype-core.version>3.1.0.CR1</jadira-usertype-core.version>
 
-
 		<!-- Web dependencies -->
-		<webjars-bootstrap.version>2.3.0</webjars-bootstrap.version>
-		<webjars-jquery-ui.version>1.9.2</webjars-jquery-ui.version>
-		<webjars-jquery.version>1.9.0</webjars-jquery.version>
-
+		<webjars-bootstrap.version>3.3.0</webjars-bootstrap.version>
+		<webjars-jquery-ui.version>1.11.1</webjars-jquery-ui.version>
+		<webjars-jquery.version>2.1.1</webjars-jquery.version>
 
 	</properties>
 
@@ -382,20 +380,13 @@
 			<artifactId>h2</artifactId>
 			<version>1.4.182</version>
 		</dependency>
-
-
-
-
+		
 		<!-- Jetty -->
-
-
 		<dependency>
-
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-server</artifactId>
 			<version>${jetty.version}</version>
 		</dependency>
-
 
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
@@ -414,12 +405,6 @@
 			<artifactId>jetty-servlets</artifactId>
 			<version>${jetty.version}</version>
 		</dependency>
-
-
-
-
-
-
 	</dependencies>
 
 	<!-- all Maven plugin versions are mentioned in order to guarantee the build 
