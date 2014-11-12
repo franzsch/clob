@@ -19,7 +19,6 @@ public class SeriesController {
 	 */
 	@RequestMapping(method=RequestMethod.GET)
 	public Series[] getAllSeries() throws InterruptedException {
-		Thread.sleep(4000);	//pause to better show sync/async RestTemplate behavior
 		return new Series[]{
 				new Series(1, "The walking dead", "USA", "Thriller"), 
 				new Series(2, "Homeland", "USA", "Drama")};

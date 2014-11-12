@@ -26,13 +26,14 @@ public class JettyServer
 
 		context.setBaseResource(resourceCollection);
 
-		context.setExtraClasspath("C:\\Users\\Chris\\git\\configurator\\target\\classes");
+		context.setExtraClasspath("target/classes");
+		//SSD/Benutzer/christianhenle/git/Adventurespots/target/classes
 
 		HandlerCollection handlers = new HandlerCollection();
 		handlers.setHandlers(new Handler[] { context, new DefaultHandler() });
 		server.setHandler(handlers);
 
-		// Initialize javax.websocket layer
+		//Initialize javax.websocket layer
 		//WebSocketServerContainerInitializer.configureContext(context);
 		server.start();
 		server.join();
