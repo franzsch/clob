@@ -21,6 +21,8 @@ public class JettyServer
 		
 		context.setContextPath("/");
 
+		
+		System.out.println("jetzt geht wieder alles");
 		ResourceCollection resourceCollection = new ResourceCollection(
 				new String[] { "src/main/webapp" });
 
