@@ -9,13 +9,7 @@ CREATE TABLE IF NOT EXISTS users (
      lastName 			VARCHAR(60) NOT NULL,
      username 			VARCHAR(10) NOT NULL,  
      password 			VARCHAR(60) NOT NULL,
-     email 				VARCHAR(60) NOT NULL,
-	 corporation 		VARCHAR(60) NOT NULL,
-	 gender 			VARCHAR(60) NOT NULL,
-	 residence 			VARCHAR(60) NOT NULL,
-	 street 			VARCHAR(60) NOT NULL,
-	 zipcode 			VARCHAR(60) NOT NULL,
-	 phone 				VARCHAR(60) NOT NULL
+     email 				VARCHAR(60) NOT NULL
 );  
 
 CREATE TABLE IF NOT EXISTS user_authority (

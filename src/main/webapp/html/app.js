@@ -2,26 +2,39 @@
 
   var app = angular.module('user',[ ]);
 
-
-
   app.directive('userRegister', function(){
     return {
       restrict: 'E',
       templateUrl: 'user-register.html',
-      controller: function() {
+      controller: ['$http','$log', function($http,$log) {
         this.user = {};
+        var testUser = this;
 
-        this.addUser = function(user)
+        this.addUser = function(user, password)
         {
-          this.user.passwordEquals = false;
-
-          if(angular.equals(user.password1, user.password2))
+          if(angular.equals(password.first, password.secound))
           {
+        	user.password = password.first;
             this.user = angular.copy(user);
-            this.user.passwordEquals = true;
           }
+          
+          $http.get('/user/user.json').success(function(data){
+         	 
+         	testUser.user = data;
+         	$log.info('Get Data' +JSON.stringify(data));  
+           });
+          
+          $log.info('testUser.test '+JSON.stringify(testUser.user));
+          
+          $http.post('/user/addUser',testUser.user).success(function(){
+        	  
+        	  
+          });
+          
+        
+          
         };
-      },controllerAs: 'userCtrl'
+      }],controllerAs: 'userCtrl'
     };
 
   });

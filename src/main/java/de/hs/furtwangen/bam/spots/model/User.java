@@ -23,10 +23,10 @@ public class User extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "firstname")
-	private String firstName;
+	private String firstname;
 	
 	@Column(name = "lastname")
-	private String lastName;
+	private String lastname;
 
 	@Column(unique = true)
 	private String username;
@@ -36,22 +36,7 @@ public class User extends BaseEntity implements Serializable {
 	
 	@Column(name = "email")
 	private String email;
-	
-	@Column(name = "gender")
-	private String gender;
-	
-	@Column(name = "residence")
-	private String residence;
-	
-	@Column(name = "street")
-	private String street;
-	
-	@Column(name = "zipCode")
-	private String zipCode;
-	
-	@Column(name = "phone")
-	private String phone;
-	
+		
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_authority", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "authority_id"))
 	private List<Authority> authoritiesList = new ArrayList<Authority>();
@@ -64,20 +49,22 @@ public class User extends BaseEntity implements Serializable {
 	private Advertisement advertisement;
 	
 
-	public String getFirstName() {
-		return firstName;
+	
+	
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getLastname() {
+		return lastname;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
 	public String getUsername() {
@@ -104,46 +91,6 @@ public class User extends BaseEntity implements Serializable {
 		this.email = email;
 	}
 
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getResidence() {
-		return residence;
-	}
-
-	public void setResidence(String residence) {
-		this.residence = residence;
-	}
-
-	public String getStreet() {
-		return street;
-	}
-
-	public void setStreet(String street) {
-		this.street = street;
-	}
-
-	public String getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
 	public List<Authority> getAuthoritiesList() {
 		return authoritiesList;
 	}
@@ -156,14 +103,13 @@ public class User extends BaseEntity implements Serializable {
 		this.authoritiesList = authoritiesList;
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return "User [firstName=" + firstName + ", lastName=" + lastName
+		return "User [firstname=" + firstname + ", lastname=" + lastname
 				+ ", username=" + username + ", password=" + password
-				+ ", email=" + email
-				+ ", gender=" + gender + ", residence=" + residence
-				+ ", street=" + street + ", zipCode=" + zipCode + ", phone="
-				+ phone + ", authoritiesList=" + authoritiesList + "]";
+				+ ", email=" + email + "]";
 	}
 
 	public Set<Spot> getSpots() {
