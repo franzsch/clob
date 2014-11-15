@@ -33,7 +33,7 @@
 	<tx:annotation-driven />
 
 
-	<beans profile="spring-data-jpa">
+	<beans>
 		<!-- JPA EntityManagerFactory -->
 		<bean id="entityManagerFactory"
 			class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"

@@ -16,23 +16,23 @@
           {
         	user.password = password.first;
             this.user = angular.copy(user);
-          }
-          
-          $http.get('/user/user.json').success(function(data){
-         	 
-         	testUser.user = data;
-         	$log.info('Get Data' +JSON.stringify(data));  
-           });
-          
-          $log.info('testUser.test '+JSON.stringify(testUser.user));
-          
-          $http.post('/user/addUser',testUser.user).success(function(){
-        	  
-        	  
-          });
-          
-        
-          
+            
+            var addUserPost = $http.post('/user/addUser',user);
+            
+            addUserPost.success(function(data, status, headers, config){
+            	$log.info('data '+JSON.stringify(data));
+            	$log.info('status '+status);
+            	$log.info('headers '+headers);
+               	$log.info('config '+JSON.stringify(config));
+            });
+            
+            addUserPost.error(function(data, status, headers, config) {
+            	$log.info('data '+JSON.stringify(data));
+            	$log.info('status '+status);
+            	$log.info('headers '+headers);
+            	$log.info('config '+JSON.stringify(config));
+    		});
+          }    
         };
       }],controllerAs: 'userCtrl'
     };
