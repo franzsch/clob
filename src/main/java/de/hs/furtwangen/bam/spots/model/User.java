@@ -1,7 +1,9 @@
 package de.hs.furtwangen.bam.spots.model;
 
 import java.io.Serializable;
+import java.security.Permission;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,9 +18,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Transient;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity(name = "users")
-public class User extends BaseEntity implements Serializable {
+public class User extends BaseEntity implements Serializable, UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
@@ -130,6 +136,45 @@ public class User extends BaseEntity implements Serializable {
 
 	public void setAdvertisement(Advertisement advertisement) {
 		this.advertisement = advertisement;
+	}
+	
+
+
+	@Transient
+	public Set<Permission> getPermissions() {
+		//TODO
+	
+		return null;
+	}
+
+	@Override
+	@Transient
+	public Collection<GrantedAuthority> getAuthorities() {
+		//TODO
+		return null;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// return true = account is valid / not expired
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// return true = account is not locked
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// return true = password is valid / not expired
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
 	
 }
