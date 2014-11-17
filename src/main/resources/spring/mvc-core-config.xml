@@ -17,8 +17,7 @@
 
 	<mvc:annotation-driven />
 
-	<!-- all resources inside folder src/main/webapp/resources are mapped so 
-		they can be refered to inside JSP files (see header.jsp for more details) -->
+	<!-- all resources inside folder src/main/webapp/resources are mapped so -->
 	<mvc:resources mapping="/html/**" location="/html/" />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 

@@ -1,22 +1,24 @@
 (function(){
 
-  var app = angular.module('user',[ ]);
-
-  app.directive('userRegister', function(){
-    return {
-      restrict: 'E',
-      templateUrl: 'user-register.html',
-      controller: ['$http','$log', function($http,$log) {
-        this.user = {};
-        var testUser = this;
-
-        this.addUser = function(user, password)
-        {
-          if(angular.equals(password.first, password.secound))
+  var app = angular.module('user',['ngRoute']);
+  
+  app.config(function ($routeProvider) {
+	    $routeProvider
+	        .when('/', {
+	            templateUrl: 'partials/register.html',
+	            controller: RegisterController
+	        })
+	        .otherwise({
+	            redirectTo: '/'
+	        });
+	});
+  
+  function RegisterController($scope, $location, $log, $http) {
+	  
+	  $scope.send = function(user)
+      {
+          if(angular.equals(user.password1, user.password2))
           {
-        	user.password = password.first;
-            this.user = angular.copy(user);
-            
             var addUserPost = $http.post('/user/addUser',user);
             
             addUserPost.success(function(data, status, headers, config){
@@ -34,10 +36,5 @@
     		});
           }    
         };
-      }],controllerAs: 'userCtrl'
     };
-
-  });
-
-
 })();

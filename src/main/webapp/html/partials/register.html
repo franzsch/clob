@@ -1,0 +1,20 @@
+
+
+        <div ng-show="user">
+            <h1>{{user.email}}</h1>
+            <h1>{{user.password}}</h1>
+            <h1>{{user.firstname}}</h1>
+            <h1>{{user.lastname}}</h1>
+        </div>
+        <form name="registerUserForm" novalidate>
+            <input ng-model="user.email" type="email" class="ng-pristine ng-invalid" required/>
+            <input ng-model="user.password1" type="password" class="ng-dirty ng-invalid" required/>
+            <input ng-model="user.password2" type="password" class="ng-dirty ng-invalid" required/>
+            <input ng-model="user.firstname" type="text" class="ng-dirty ng-invalid" required/>
+            <input ng-model="user.lastname" type="text" class="ng-dirty ng-invalid" required/>
+            <div> Valide? {{registerUserForm.$valid}} </div>
+            <input type="submit" ng-click="send(user)" />
+            <p>{{user | json}}</p>
+            <p>{{user.passwordEquals}}</p>
+        </form>
+        
