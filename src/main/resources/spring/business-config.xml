@@ -15,13 +15,13 @@
 	<import resource="datasource-config.xml" />
 
 	<!-- import of Authentication and Authorition config -->
-	<!-- <import resource="security-config.xml" /> -->
+	<import resource="security-config.xml" />
 
 	<import resource="mvc-core-config.xml" />
 
 	<context:component-scan base-package="de.hs.furtwangen.bam.spots.service" />
 
-	<jpa:repositories base-package="de.hs.furtwangen.bam.spots.springdatajpa" />
+	<jpa:repositories base-package="de.hs.furtwangen.bam.spots.repository" />
 
 	<!-- Configurer that replaces ${...} placeholders with values from a properties 
 		file -->
