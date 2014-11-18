@@ -5,9 +5,9 @@ DROP TABLE authority IF EXISTS;
 
 CREATE TABLE IF NOT EXISTS users (
  	 id 				INTEGER IDENTITY PRIMARY KEY,
- 	 firstName 			VARCHAR(10) NOT NULL,  
+ 	 firstName 			VARCHAR(60) NOT NULL,  
      lastName 			VARCHAR(60) NOT NULL,
-     username 			VARCHAR(10) NOT NULL,  
+     username 			VARCHAR(60) NOT NULL,  
      password 			VARCHAR(60) NOT NULL,
      email 				VARCHAR(60) NOT NULL
 );  

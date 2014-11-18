@@ -5,7 +5,7 @@
   app.config(function ($routeProvider) {
 	    $routeProvider
 	        .when('/', {
-	            templateUrl: 'partials/register.html',
+	            templateUrl: 'html/partials/register.html',
 	            controller: RegisterController
 	        })
 	        .otherwise({
