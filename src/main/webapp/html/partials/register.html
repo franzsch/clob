@@ -1,34 +1,64 @@
 
 
-        <div ng-show="user">
-            <h1>{{user.email}}</h1>
-            <h1>{{user.password}}</h1>
-            <h1>{{user.firstname}}</h1>
-            <h1>{{user.lastname}}</h1>
-        </div>
-        <form name="registerUserForm" role="form" novalidate>
-          <div class="form-group">
-            	<input ng-model="user.email" type="text" class="form-control ng-pristine ng-invalid" required/>
-            </div>
-            <div class="form-group">
-           		<input ng-model="user.username" type="email" class="form-control ng-pristine ng-invalid" required/>
-           	</div>
-           	<div class="form-group">
-            	<input ng-model="user.password" type="password" class="form-control ng-dirty ng-invalid" required/>
-            </div>
-            <div class="form-group">
-            	<input ng-model="user.password1" type="password" class="form-control ng-dirty ng-invalid" required/>
-            </div>
-            <div class="form-group">
-            	<input ng-model="user.firstname" type="text" class="form-control ng-dirty ng-invalid" required/>
-             </div>
-             <div class="form-group">
-            	<input ng-model="user.lastname" type="text" class="form-control ng-dirty ng-invalid" required/>
-			</div>   
-            <div> Valide? {{registerUserForm.$valid}} </div>
-            <input type="submit" ng-click="send(user)" />
-            <p>{{user | json}}</p>
-            <p>{{user.passwordEquals}}</p>
-        </form>
-        
- 
+
+<form class="form-horizontal" role="form" novalidate>
+
+	<div class="form-group">
+		<label for="inputFieldEmail" class="col-sm-2 control-label">E-Mail</label>
+		<div class="col-sm-10">
+			<input ng-model="user.email" type="email"
+				class="form-control ng-dirty ng-invalid" required
+				id="inputFieldEmail" placeholder="E-Mail" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="inputFieldUsername" class="col-sm-2 control-label">Username</label>
+		<div class="col-sm-10">
+			<input ng-model="user.username" type="text"
+				class="form-control ng-dirty ng-invalid" required
+				id="inputFieldUsername" placeholder="Username" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="inputFieldPassword" class="col-sm-2 control-label">Password</label>
+		<div class="col-sm-10">
+			<input ng-model="user.password" type="password"
+				class="form-control ng-dirty ng-invalid" required 
+				id="inputFieldPassword" placeholder="Password" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="inputFieldPassword1" class="col-sm-2 control-label">Password</label>
+		<div class="col-sm-10">
+			<input ng-model="user.password1" type="password"
+				class="form-control ng-dirty ng-invalid" required 
+				id="inputFieldPassword1" placeholder="repeat Password" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="inputFieldFirstname" class="col-sm-2 control-label">Firstname</label>
+		<div class="col-sm-10">
+			<input ng-model="user.firstname" type="text"
+				class="form-control ng-dirty ng-invalid" required
+				id="inputFieldFirstname" placeholder="Firstname" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="inputFieldLastname" class="col-sm-2 control-label">Lastname</label>
+		<div class="col-sm-10">
+			<input ng-model="user.lastname" type="text"
+				class="form-control ng-dirty ng-invalid" required
+				id="inputFieldLastname" placeholder="Lastname" />
+		</div>
+	</div>
+	
+	<div>Valide? {{registerUserForm.$valid}}</div>
+	
+	<button type="submit" ng-click="send(user)" class="btn btn-default">Commit</button>
+	
+</form>
+
