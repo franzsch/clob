@@ -4,8 +4,8 @@
   
   app.config(function ($routeProvider) {
 	    $routeProvider
-	        .when('/', {
-	            templateUrl: 'html/partials/register.html',
+	        .when('/register', {
+	            templateUrl: 'partials/register.html',
 	            controller: RegisterController
 	        })
 	        .otherwise({
