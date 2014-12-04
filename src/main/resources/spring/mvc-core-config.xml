@@ -18,8 +18,12 @@
 	<mvc:annotation-driven />
 
 	<!-- all resources inside folder src/main/webapp/resources are mapped so -->
-	<mvc:resources mapping="/html/**" location="/html/" />
+	<mvc:resources mapping="/app/**" location="/app/" />
 	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/partials/**" location="/app/partials/" />
+	<mvc:resources mapping="/scripts/**" location="/app/scripts/" />
+	<mvc:resources mapping="/lib/**" location="/app/lib/" />
+	<mvc:resources mapping="/style.css" location="/app/style.css" />
 
 	<!-- uses WebJars so Javascript and CSS libs can be declared as Maven dependencies 
 		(Bootstrap, jQuery...) -->
