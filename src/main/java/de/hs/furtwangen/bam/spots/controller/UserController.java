@@ -15,13 +15,19 @@ import de.hs.furtwangen.bam.spots.service.UserService;
 @RequestMapping(value = "/user")
 public class UserController {
 	
+	
+	private final UserService userService;
+	
 	@Autowired
-	private UserService userService;
+	public UserController(UserService userService) {
+		this.userService = userService;
+	}
 	
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void addUser(@RequestBody User user) {
 		System.out.println("user " + user);
+		userService.addUser(user);
 	}
 	
 	@RequestMapping(value = "/user.json", method = RequestMethod.GET)

@@ -5,7 +5,7 @@
   app.config(function ($routeProvider) {
 	    $routeProvider
 	        .when('/', {
-	            templateUrl: 'partials/register.html',
+	            templateUrl: 'html/partials/register.html',
 	            controller: RegisterController
 	        })
 	        .otherwise({
@@ -17,7 +17,7 @@
 	  
 	  $scope.send = function(user)
       {
-          if(angular.equals(user.password1, user.password2))
+          if(angular.equals(user.password, user.password1))
           {
             var addUserPost = $http.post('/user/addUser',user);
             

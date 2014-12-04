@@ -7,20 +7,23 @@
 
 	<beans:bean name="bcryptEncoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
-	
-	<!-- 
+
+
 	<authentication-manager>
-		 <authentication-provider user-service-ref="customUserDetailService">
+		<authentication-provider user-service-ref="userDetailServiceImpl">
 			<password-encoder ref="bcryptEncoder" />
 		</authentication-provider>
 	</authentication-manager>
- 	-->
-<http auto-config="true" use-expressions="true">
+
+	<http auto-config="true" use-expressions="true">
 		<form-login login-page="/login" authentication-failure-url="/login-error" />
 		<logout logout-success-url="/login" />
-		 <access-denied-handler error-page="/login-error"/>
-		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/customer/**" access="hasRole('ROLE_CUSTOMER')" />
+		<access-denied-handler error-page="/login-error" />
+		
+		<intercept-url pattern="/user/addUser" access="permitAll" />
+		<intercept-url pattern="/webjars/**" access="permitAll" />
+		<intercept-url pattern="/resources/**" access="permitAll" />
+		<intercept-url pattern="/html/**" access="permitAll" />
 	</http>
 
 </beans:beans>
