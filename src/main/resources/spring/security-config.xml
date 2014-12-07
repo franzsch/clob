@@ -1,38 +1,50 @@
-<beans:beans xmlns="http://www.springframework.org/schema/security"
-	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security.xsd">
 
-	<beans:bean name="bcryptEncoder"
+	<bean name="bcryptEncoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
 
-	<authentication-manager>
-		<authentication-provider user-service-ref="userDetailServiceImpl">
-			<password-encoder ref="bcryptEncoder" />
-		</authentication-provider>
-	</authentication-manager>
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder">
+		<constructor-arg value="ThisIsASecretSoChangeMe" />
+	</bean>
 
-	<http auto-config="true" use-expressions="true">
-		<form-login login-page="/login" authentication-failure-url="/login-error" />
-		<logout logout-success-url="/login" />
-		<access-denied-handler error-page="/login-error" />
-		
+
+	<security:authentication-manager id="authenticationManager">
+		<security:authentication-provider user-service-ref="userDetailServiceImpl">
+			<security:password-encoder ref="passwordEncoder" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+	<security:http realm="Protected API" use-expressions="true" auto-config="false"
+		create-session="stateless" entry-point-ref="unauthorizedEntryPoint"
+		authentication-manager-ref="authenticationManager">
+		<security:custom-filter ref="authenticationTokenProcessingFilter" position="FORM_LOGIN_FILTER" />
+
 		<!-- Static Resources -->
-		<intercept-url pattern="/app/**" access="permitAll" />
-		<intercept-url pattern="/resources/**" access="permitAll" />
-		<intercept-url pattern="/partials/**" access="permitAll" />
-		<intercept-url pattern="/scripts/**" access="permitAll" />
-		<intercept-url pattern="/lib/**" access="permitAll" />
-		<intercept-url pattern="/style.css" access="permitAll" />
-		
-		
-		<intercept-url pattern="/user/addUser" access="permitAll" />
-		<intercept-url pattern="/user/user.json" access="isAuthenticated()" />
-		
-		
-	</http>
+		<security:intercept-url pattern="/app/**" access="permitAll" />
+		<security:intercept-url pattern="/resources/**" access="permitAll" />
+		<security:intercept-url pattern="/partials/**" access="permitAll" />
+		<security:intercept-url pattern="/scripts/**" access="permitAll" />
+		<security:intercept-url pattern="/lib/**" access="permitAll" />
+		<security:intercept-url pattern="/style.css" access="permitAll" />
+		<security:intercept-url pattern="/webjars/**" access="permitAll" />
 
-</beans:beans>
+		<security:intercept-url pattern="/user/authenticate" access="permitAll" />
+		<security:intercept-url pattern="/user/addUser" access="permitAll" />
+		<security:intercept-url pattern="/user/user.json" access="isAuthenticated()" />
+	</security:http>
+
+	<bean id="unauthorizedEntryPoint"
+		class="de.hs.furtwangen.bam.spots.controller.UnauthorizedEntryPoint" />
+				
+		<bean class="de.hs.furtwangen.bam.spots.controller.AuthenticationTokenProcessingFilter" id="authenticationTokenProcessingFilter" />
+
+
+</beans>

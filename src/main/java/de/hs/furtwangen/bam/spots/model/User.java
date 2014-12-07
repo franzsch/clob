@@ -50,9 +50,9 @@ public class User extends BaseEntity implements Serializable, UserDetails {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Set<Spot> spots = new HashSet<Spot>();
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	/*@OneToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
-	private Advertisement advertisement;
+	private Advertisement advertisement;*/
 	
 
 	
@@ -130,13 +130,13 @@ public class User extends BaseEntity implements Serializable, UserDetails {
 		spots.add(spot);
 	}
 
-	public Advertisement getAdvertisement() {
+	/*public Advertisement getAdvertisement() {
 		return advertisement;
 	}
 
 	public void setAdvertisement(Advertisement advertisement) {
 		this.advertisement = advertisement;
-	}
+	}*/
 	
 
 

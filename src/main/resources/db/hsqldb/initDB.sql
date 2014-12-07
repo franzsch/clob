@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS users (
  	 firstName 			VARCHAR(60) NOT NULL,  
      lastName 			VARCHAR(60) NOT NULL,
      username 			VARCHAR(60) NOT NULL,  
-     password 			VARCHAR(60) NOT NULL,
+     password 			VARCHAR(120) NOT NULL,
      email 				VARCHAR(60) NOT NULL
 );  
 
