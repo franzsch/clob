@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,6 +36,15 @@ public class UserController {
 	@Qualifier("authenticationManager")
 	private AuthenticationManager authManager;
 
+	/**
+	 * Recieves Username und Password as JSON.
+	 * Returns AuthenticationToken if Username and Password is correct.
+	 * 
+	 * Returns nothing if Username and Password are wrong.
+	 * 
+	 * @param userAuth
+	 * @return
+	 */
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public TokenTransfer authenticate(@RequestBody UserAuth userAuth) {
@@ -51,14 +62,46 @@ public class UserController {
 		userService.addUser(user);
 	}
 
-	@RequestMapping(value = "/user.json", method = RequestMethod.GET)
+	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public User getUser() {
+		Authentication authentication = SecurityContextHolder.getContext()
+				.getAuthentication();
+	
+		if (authentication.getPrincipal() instanceof User) {
+			User user = (User) authentication.getPrincipal();
+			user.setSpots(null);
+
+			return user;
+		}
+		
 		User user = new User();
-		user.setId(1);
-		user.setFirstname("firstName");
-		user.setLastname("lastName");
-		user.setPassword("password");
 		user.setUsername("username");
+		
 		return user;
 	}
+
+	/**
+	 * 
+	 * @return Username from AuthenticatonToken
+	 */
+	@RequestMapping(value = "/username", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	public UserTransfer getUsername() {
+		Authentication authentication = SecurityContextHolder.getContext()
+				.getAuthentication();
+	
+		if (authentication.getPrincipal() instanceof User) {
+			User user = (User) authentication.getPrincipal();
+
+			return new UserTransfer(user.getUsername());
+		}
+		
+		if (authentication.getPrincipal() instanceof String) {
+			String user = (String) authentication.getPrincipal();
+
+			return new UserTransfer(user);
+		}
+		return new UserTransfer("no User found");
+	}
+
 }

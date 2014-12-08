@@ -1,6 +1,6 @@
 
 
-var app = angular.module('spotsApp',['ngRoute', 'ngCookies', 'spotsService']);
+var app = angular.module('spotsApp',['ngRoute', 'ngCookies', 'spotsApp.services']);
   
   app.config(['$routeProvider', '$locationProvider', '$httpProvider', 
               function ($routeProvider, $locationProvider, $httpProvider) 
@@ -9,6 +9,8 @@ var app = angular.module('spotsApp',['ngRoute', 'ngCookies', 'spotsService']);
 	  $routeProvider.when('/register', { templateUrl: 'partials/register.html', controller: RegisterController});
 	    
 	  $routeProvider.when('/login', { templateUrl: 'partials/login.html', controller: LoginController});
+	  
+	  $routeProvider.when('/profile', { templateUrl: 'partials/profile.html', controller: ProfileController});
 	    
 	  $routeProvider.otherwise({redirectTo: '/'});
 	  
@@ -38,13 +40,14 @@ var app = angular.module('spotsApp',['ngRoute', 'ngCookies', 'spotsService']);
 	    
 	    /* Registers auth token interceptor, auth token is either passed by header or by query parameter
 	     * as soon as there is an authenticated user */
-	    $httpProvider.interceptors.push(function ($q, $rootScope, $location) {
+	    $httpProvider.interceptors.push(function ($q, $rootScope, $location, $log) {
 	        return {
 	        	'request': function(config) {
 	        		var isRestCall = config.url.indexOf('rest') == 0;
-	        		if (isRestCall && angular.isDefined($rootScope.authToken)) {
+	        		if (true && angular.isDefined($rootScope.authToken)) {
 	        			var authToken = $rootScope.authToken;
-	        			if (exampleAppConfig.useAuthTokenHeader) {
+	        			
+	        			if (spotsAppConfig.useAuthTokenHeader) {
 	        				config.headers['X-Auth-Token'] = authToken;
 	        			} else {
 	        				config.url = config.url + "?token=" + authToken;
@@ -146,16 +149,8 @@ function LoginController($scope, $rootScope, $location, $cookieStore, UserServic
 		
 		authResponse.success(function(data, status, headers, config)
 		{
-			$log.info('data '+JSON.stringify(data));
-		    $log.info('status '+status);
-		    $log.info('headers '+headers);
-		    $log.info('config '+JSON.stringify(config));
-		    
-		    $log.info('data.token '+data.token);
-		    
 		    authToken = data.token;
 		    
-		    $log.info('authToken '+authToken);
 			$rootScope.authToken = authToken;
 			if ($scope.rememberMe) {
 				$cookieStore.put('authToken', authToken);
@@ -169,7 +164,41 @@ function LoginController($scope, $rootScope, $location, $cookieStore, UserServic
 	};
 };
 
-  
+function ProfileController($scope,$log, $http)
+{
+	$scope.user;
+	
+	$http.get('/user/user').
+	  success(function(data, status, headers, config) {
+		  $log.info('data '+JSON.stringify(data));
+		  $scope.user = data;
+		  
+	    // this callback will be called asynchronously
+	    // when the response is available
+	  }).
+	  error(function(data, status, headers, config) {
+	    // called asynchronously if an error occurs
+	    // or server returns response with an error status.
+	  });
+	
+	
+	
+};
+
+var services = angular.module('spotsApp.services', ['ngResource']);
+
+services.factory('UserService', function($resource) {
+	
+	return $resource('user/username/:action', {},
+			{
+				authenticate: {
+					method: 'POST',
+					params: {'action' : 'authenticate'},
+					headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+				},
+			}
+		);
+});
 
     
 
