@@ -1,1 +1,72 @@
-<p>{{user.username}}</p>
+
+
+<div>
+        <h4>Person</h4>
+    	<hr />
+        <dl class="dl-horizontal">
+            <dt>
+               Vorname
+            </dt>
+    
+            <dd>
+              {{user.firstname}}
+            </dd>
+    
+            <dt>
+                Nachname
+            </dt>
+    
+            <dd>
+              {{user.lastname}}
+            </dd>
+        
+            <dt>
+                Username
+            </dt>
+    
+            <dd>
+            {{user.username}}
+            </dd>
+            <dt>
+               Geburtsdatum
+            </dt>
+    
+            <dd>
+            <!-- DB-Zugriff Geburtsdatum -->
+            </dd>
+    
+            <dt>
+                Email
+            </dt>
+    
+            <dd>
+              {{user.email}}
+            </dd>
+    
+            <dt>
+                Passwort
+            </dt>
+    
+            <dd>
+             {{user.password}}
+
+            </dd>
+    
+            <dt>
+               Straße und Hausnummer
+            </dt>
+    
+            <dd>
+            <!-- DB-Zugriff Straße und Hausnummer -->
+            </dd>
+
+            <dt>
+                PLZ
+            </dt>
+
+            <dd>    
+            <!-- DB-Zugriff PLZ -->
+			</dd>
+    
+        </dl>
+    </div>
