@@ -1,5 +1,6 @@
 package de.hs.furtwangen.bam.spots.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -9,7 +10,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.security.web.FilterChainProxy;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -19,7 +22,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import de.hs.furtwangen.bam.spots.model.User;
 import de.hs.furtwangen.bam.spots.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -30,6 +32,9 @@ public class UserControllerIntegrationTest {
 	@Autowired
 	private WebApplicationContext wac;
 
+	@Autowired
+	private FilterChainProxy springSecurityFilterChain;
+
 	private MockMvc mockMvc;
 
 	@Autowired
@@ -37,7 +42,8 @@ public class UserControllerIntegrationTest {
 
 	@Before
 	public void setUp() throws Exception {
-		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac)
+				.addFilters(this.springSecurityFilterChain).build();
 	}
 
 	@After
@@ -68,10 +74,12 @@ public class UserControllerIntegrationTest {
 						.contentType(MediaType.APPLICATION_JSON).content(json)
 						.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isCreated())
-				.andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("token")));
-				//.andDo(MockMvcResultHandlers.print());
+				.andExpect(
+						MockMvcResultMatchers.content().string(
+								Matchers.containsString("token")));
+		// .andDo(MockMvcResultHandlers.print());
 	}
-	
+
 	@Test
 	public void authenticateUserNameUnknown() throws Exception {
 		String json = "{\"username\":\"hesfasd\",\"password\":\"henlechr\"}";
@@ -81,10 +89,12 @@ public class UserControllerIntegrationTest {
 						.contentType(MediaType.APPLICATION_JSON).content(json)
 						.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isCreated())
-				.andExpect(MockMvcResultMatchers.content().string(Matchers.isEmptyString()));
-				//.andDo(MockMvcResultHandlers.print());
+				.andExpect(
+						MockMvcResultMatchers.content().string(
+								Matchers.isEmptyString()));
+		// .andDo(MockMvcResultHandlers.print());
 	}
-	
+
 	@Test
 	public void authenticatePasswordWrong() throws Exception {
 		String json = "{\"username\":\"henlechr\",\"password\":\"asfsaf\"}";
@@ -94,8 +104,36 @@ public class UserControllerIntegrationTest {
 						.contentType(MediaType.APPLICATION_JSON).content(json)
 						.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isCreated())
-				.andExpect(MockMvcResultMatchers.content().string(Matchers.isEmptyString()));
-				//.andDo(MockMvcResultHandlers.print());
+				.andExpect(
+						MockMvcResultMatchers.content().string(
+								Matchers.isEmptyString()));
+		// .andDo(MockMvcResultHandlers.print());
+	}
+
+	@Test
+	public void getUsernameAnonym() throws Exception {
+		mockMvc.perform(
+				get("/user/username").contentType(MediaType.APPLICATION_JSON)
+						.accept(MediaType.APPLICATION_JSON))
+						.andExpect(status().is4xxClientError())
+				.andDo(MockMvcResultHandlers.print());
+	}
+
+	@Test
+	public void getUsernameTestUser() throws Exception {
+
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.add("X-Auth-Token",
+				"henlechr:1418409589692:883e2246d3a4ee8deda8bab418720b02");
+
+		mockMvc.perform(
+				get("/user/username").headers(httpHeaders)
+						.contentType(MediaType.APPLICATION_JSON)
+						.accept(MediaType.APPLICATION_JSON))
+				.andExpect(
+						MockMvcResultMatchers.content().string(
+								Matchers.containsString("henlechr")))
+				.andDo(MockMvcResultHandlers.print());
 	}
 
 }

@@ -33,6 +33,8 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean
 
 		String authToken = this.extractAuthTokenFromRequest(httpRequest);
 		String userName = TokenUtils.getUserNameFromToken(authToken);
+		
+		System.out.println("Filter Username "+userName);
 
 		if (userName != null) {
 
