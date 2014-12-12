@@ -335,6 +335,13 @@
 			<version>${mockito.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+			<scope>test</scope>
+			<version>1.1.0</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -524,7 +531,8 @@
 						<phase>test</phase>
 						<configuration>
 							<target name="building">
-								<exec executable="cmd" dir="\${project.basedir}/src/main/webapp" osfamily="windows">
+								<exec executable="cmd" dir="\${project.basedir}/src/main/webapp"
+									osfamily="windows">
 									<arg line="/c karma start karma-e2e.conf.js" />
 								</exec>
 

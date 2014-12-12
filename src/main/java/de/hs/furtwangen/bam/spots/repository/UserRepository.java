@@ -1,7 +1,5 @@
 package de.hs.furtwangen.bam.spots.repository;
 
-import java.util.List;
-
 import org.springframework.data.repository.CrudRepository;
 
 import de.hs.furtwangen.bam.spots.model.User;

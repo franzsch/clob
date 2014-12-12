@@ -7,6 +7,7 @@ import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import org.hamcrest.Matchers;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +17,10 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -35,10 +39,13 @@ public class UserControllerTest {
 
 	@Mock
 	private UserService userService;
+	
+	@Mock
+	private PasswordEncoder passwordEncoder;
 
 	@Before
 	public void setUp() throws Exception {
-		 mockMvc = MockMvcBuilders.standaloneSetup(new UserController(userService))
+		 mockMvc = MockMvcBuilders.standaloneSetup(new UserController(userService,passwordEncoder))
 	                .build();
 	}
 
@@ -69,6 +76,33 @@ public class UserControllerTest {
 				//.andDo(MockMvcResultHandlers.print());
 		
 		verify(userService, times(1)).addUser(any(User.class));
+        verifyZeroInteractions(userService);
+
+	}
+	
+	@Test
+	public void authenticate() throws Exception {
+		User user = new User();
+		user.setUsername("henlechr");
+		user.setPassword("henlechr");
+		
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonUser = mapper.writeValueAsString(user);
+		System.out.println("jsonUser " + jsonUser);
+		
+		Mockito.when(userService.findByUsername("henlechr")).thenReturn(user);
+		
+		Mockito.when(passwordEncoder.matches("henlechr", "henlechr")).thenReturn(true);
+
+		mockMvc.perform(
+				post("/user/authenticate").contentType(MediaType.APPLICATION_JSON)
+						.content(jsonUser).accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isCreated())
+				.andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("token")))
+				.andDo(MockMvcResultHandlers.print());
+		
+		verify(userService, times(1)).findByUsername("henlechr");
         verifyZeroInteractions(userService);
 
 	}

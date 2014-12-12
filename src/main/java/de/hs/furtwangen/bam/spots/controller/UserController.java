@@ -28,8 +28,10 @@ public class UserController {
 	private PasswordEncoder passwordEncoder;
 
 	@Autowired
-	public UserController(UserService userService) {
+	public UserController(UserService userService,
+			PasswordEncoder passwordEncoder) {
 		this.userService = userService;
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	@Autowired
@@ -37,8 +39,8 @@ public class UserController {
 	private AuthenticationManager authManager;
 
 	/**
-	 * Recieves Username und Password as JSON.
-	 * Returns AuthenticationToken if Username and Password is correct.
+	 * Recieves Username und Password as JSON. Returns AuthenticationToken if
+	 * Username and Password is correct.
 	 * 
 	 * Returns nothing if Username and Password are wrong.
 	 * 
@@ -52,7 +54,16 @@ public class UserController {
 		UserDetails userDetails = this.userService.findByUsername(userAuth
 				.getUsername());
 
-		return new TokenTransfer(TokenUtils.createToken(userDetails));
+		if (userDetails == null) {
+			return null;
+		} else {
+			if (passwordEncoder.matches(userAuth.getPassword(),
+					userDetails.getPassword())) {
+				return new TokenTransfer(TokenUtils.createToken(userDetails));
+			}
+		}
+
+		return null;
 	}
 
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
@@ -66,17 +77,17 @@ public class UserController {
 	public User getUser() {
 		Authentication authentication = SecurityContextHolder.getContext()
 				.getAuthentication();
-	
+
 		if (authentication.getPrincipal() instanceof User) {
 			User user = (User) authentication.getPrincipal();
 			user.setSpots(null);
 
 			return user;
 		}
-		
+
 		User user = new User();
 		user.setUsername("username");
-		
+
 		return user;
 	}
 
@@ -89,13 +100,13 @@ public class UserController {
 	public UserTransfer getUsername() {
 		Authentication authentication = SecurityContextHolder.getContext()
 				.getAuthentication();
-	
+
 		if (authentication.getPrincipal() instanceof User) {
 			User user = (User) authentication.getPrincipal();
 
 			return new UserTransfer(user.getUsername());
 		}
-		
+
 		if (authentication.getPrincipal() instanceof String) {
 			String user = (String) authentication.getPrincipal();
 

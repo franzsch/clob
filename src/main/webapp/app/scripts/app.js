@@ -138,6 +138,8 @@ function LoginController($scope, $rootScope, $location, $cookieStore, UserServic
 	
 	$scope.rememberMe = false;
 	
+	$scope.authMessage;
+	
 	$scope.login = function() 
 	{
 		$scope.user.username;
@@ -145,20 +147,28 @@ function LoginController($scope, $rootScope, $location, $cookieStore, UserServic
 		
 		var authResponse = $http.post('/user/authenticate',$scope.user);
 		
-		var authToken;
-		
 		authResponse.success(function(data, status, headers, config)
-		{
-		    authToken = data.token;
-		    
-			$rootScope.authToken = authToken;
-			if ($scope.rememberMe) {
-				$cookieStore.put('authToken', authToken);
+		{	    	    
+			$log.info('$rootScope.authToken '+$rootScope.authToken);
+			
+			if(data.token === undefined){
+				$log.info('Token undefined');
+				
+				$scope.authMessage = 'Username or Password wrong';
 			}
-			UserService.get(function(user) {
-				$rootScope.user = user;
-				$location.path("/");
-			});
+			else{
+				$rootScope.authToken = data.token;
+			
+				if ($scope.rememberMe) {
+					$cookieStore.put('authToken', data.token);
+				}
+				
+				UserService.get(function(user) {
+					$rootScope.user = user;
+					$location.path("/");
+				});
+			}
+		
         });
 		
 	};

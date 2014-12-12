@@ -2,6 +2,8 @@
 
 	<div class="container">
 		<form class="form-signin" role="form">
+			<div class="alert alert-danger" role="alert" ng-show="authMessage">{{authMessage}}</div>		
+		
 			<h2 class="form-signin-heading">Please login</h2>
 			<label for="inputFieldEmail" class="sr-only">E-Mail</label> <input
 				type="text" id="eingabefeldEmail" ng-model="user.username" class="form-control"
@@ -17,5 +19,4 @@
 			<input type="submit" value="Login" class="btn btn-primary" ng-click="login()"/>
 		</form>
 	</div>
-	<!-- /container -->
 
