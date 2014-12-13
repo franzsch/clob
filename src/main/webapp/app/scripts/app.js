@@ -1,6 +1,6 @@
 
 
-var app = angular.module('spotsApp',['ngRoute', 'ngCookies', 'spotsApp.services']);
+var app = angular.module('spotsApp',['ngRoute', 'ngCookies', 'spotsAppServices']);
   
   app.config(['$routeProvider', '$locationProvider', '$httpProvider', 
               function ($routeProvider, $locationProvider, $httpProvider) 
@@ -107,31 +107,19 @@ var app = angular.module('spotsApp',['ngRoute', 'ngCookies', 'spotsApp.services'
 	  
 	  
   
-function RegisterController($scope, $location, $log, $http) 
+function RegisterController($scope, $location, $log, $http, registerService) 
 {	  
 	$scope.send = function(user)
     {
-		if(angular.equals(user.password, user.password1))
-        {
-			var addUserPost = $http.post('/user/addUser',user);
-            
-            addUserPost.success(function(data, status, headers, config)
-            {
-            	$log.info('data '+JSON.stringify(data));
-            	$log.info('status '+status);
-            	$log.info('headers '+headers);
-               	$log.info('config '+JSON.stringify(config));
-            });
-            
-            addUserPost.error(function(data, status, headers, config) 
-            {
-            	$log.info('data '+JSON.stringify(data));
-            	$log.info('status '+status);
-            	$log.info('headers '+headers);
-            	$log.info('config '+JSON.stringify(config));
-    		});
-          }    
-       };
+		if(registerService.checkPasswordEquals)
+		{
+			registerService.addUser(user);
+		}
+		else
+		{
+			
+		}
+    };
 };
     
 function LoginController($scope, $rootScope, $location, $cookieStore, UserService, $log, $http) {
@@ -195,7 +183,7 @@ function ProfileController($scope,$log, $http)
 	
 };
 
-var services = angular.module('spotsApp.services', ['ngResource']);
+var services = angular.module('spotsAppServices', ['ngResource']);
 
 services.factory('UserService', function($resource) {
 	
@@ -210,8 +198,34 @@ services.factory('UserService', function($resource) {
 		);
 });
 
-    
+services.factory('registerService', function($http,$log) {
+	
+	return {
+		checkPasswordEquals: function(user){
+			return angular.equals(user.password, user.password1);
+	   	},
+	   	addUser: function(user){
+	 
+				var addUserPost = $http.post('/user/addUser',user);
+	            
+	            addUserPost.success(function(data, status, headers, config)
+	            {
+	            	$log.info('data '+JSON.stringify(data));
+	            	$log.info('status '+status);
+	            	$log.info('headers '+headers);
+	               	$log.info('config '+JSON.stringify(config));
+	            });
+	            
+	            addUserPost.error(function(data, status, headers, config) 
+	            {
+	            	$log.info('data '+JSON.stringify(data));
+	            	$log.info('status '+status);
+	            	$log.info('headers '+headers);
+	            	$log.info('config '+JSON.stringify(config));
+	    		});
+	          } 
 
-
-    
-
+	};
+	
+	
+});
