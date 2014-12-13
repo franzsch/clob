@@ -72,6 +72,7 @@ public class UserController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public void addUser(@RequestBody User user) {
 		System.out.println("user " + user);
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userService.addUser(user);
 	}
 
