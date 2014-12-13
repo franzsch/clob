@@ -50,6 +50,8 @@ public class UserController {
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public TokenTransfer authenticate(@RequestBody UserAuth userAuth) {
+		
+		System.out.println(userAuth.getUsername()+" "+passwordEncoder.encode(userAuth.getPassword()));
 
 		UserDetails userDetails = this.userService.findByUsername(userAuth
 				.getUsername());
@@ -85,10 +87,7 @@ public class UserController {
 			return user;
 		}
 
-		User user = new User();
-		user.setUsername("username");
-
-		return user;
+		return null;
 	}
 
 	/**
