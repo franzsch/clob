@@ -11,6 +11,16 @@ var app = angular.module('spotsApp',['ngRoute', 'ngCookies', 'spotsAppServices']
 	  $routeProvider.when('/login', { templateUrl: 'partials/login.html', controller: LoginController});
 	  
 	  $routeProvider.when('/profile', { templateUrl: 'partials/profile.html', controller: ProfileController});
+
+	  $routeProvider.when('/spots', { templateUrl: 'partials/spots.html', controller: SpotsController});
+	  
+	  $routeProvider.when('/spotSearch', { templateUrl: 'partials/spotsSearch.html', controller: SpotsSearchController});
+	  
+	  $routeProvider.when('/spotsCreate', { templateUrl: 'partials/spotsCreate.html', controller: SpotsCreateController});
+
+	  $routeProvider.when('/home', { templateUrl: 'partials/home.html', controller: HomeController});
+	  
+	  
 	    
 	  $routeProvider.otherwise({redirectTo: '/'});
 	  
@@ -182,6 +192,22 @@ function ProfileController($scope,$log, $http)
 	
 	
 };
+
+function SpotsController(){
+	
+};
+
+function SpotsSearchController(){
+	
+};
+
+function SpotsCreateController (){
+	
+};
+
+function HomeController(){
+	
+}
 
 var services = angular.module('spotsAppServices', ['ngResource']);
 
