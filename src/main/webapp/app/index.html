@@ -48,14 +48,14 @@
 					</div>
 					<button type="submit" class="btn btn-default">Let&acute;s go</button>
 				</form>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#/profile">Profil</a></li>
-					<li class="dropdown"><a href="#/login" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">Login
-							<span class="caret"></span>
-					</a>
+				<ul class="nav navbar-nav navbar-right" ng-hide="user">
+					<li><a href="#/login">Login</a>
 					</li>
 				</ul>
+				<ul class="nav navbar-nav navbar-right" ng-show="user">
+					<li><a href="#/profile">{{user.name}}</a></li>
+					<li><a href="" ng-click="logout()">Logout</a></li>
+					</ul>
 			</div>
 			<!-- /.navbar-collapse -->
 		</div>
