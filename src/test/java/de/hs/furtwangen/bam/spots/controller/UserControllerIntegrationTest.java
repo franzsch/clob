@@ -124,7 +124,7 @@ public class UserControllerIntegrationTest {
 
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.add("X-Auth-Token",
-				"henlechr:1418409589692:883e2246d3a4ee8deda8bab418720b02");
+				"henlechr:1418643807409:0b71a415a6b95a21f8b118a0a763c8be");
 
 		mockMvc.perform(
 				get("/user/username").headers(httpHeaders)
