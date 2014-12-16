@@ -536,7 +536,7 @@
 									<arg line="/c karma start karma-e2e.conf.js" />
 								</exec>
 
-								<exec executable="karma" dir="\${project.basedir}"
+								<exec executable="karma" dir="\${project.basedir}/src/main/webapp"
 									osfamily="unix">
 									<arg line="start" />
 								</exec>
