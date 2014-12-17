@@ -7,5 +7,9 @@ public interface UserService {
 	public User addUser(User user);
 	
 	public User findByUsername(String username);
+	
+	public User findOne(int id);
+	
+	public void save(User user);
 
 }

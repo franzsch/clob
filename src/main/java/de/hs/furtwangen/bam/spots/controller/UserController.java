@@ -90,6 +90,14 @@ public class UserController {
 
 		return null;
 	}
+	
+	@RequestMapping(value = "/editUser", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+	public void editUser(@RequestBody User user) {
+		System.out.println("user to be changed: " + user);
+		
+		userService.save(user);
+	}
 
 	/**
 	 * 

@@ -25,5 +25,17 @@ public class UserServiceImpl implements UserService {
 	public User findByUsername(String username){
 		return userRepository.findByUsername(username);
 	}
+	
+	@Transactional(readOnly=true)
+	@Override
+	public User findOne(int id){
+		return userRepository.findOne(id);
+	}
+	
+	@Transactional
+	public void save(User user)
+	{
+		userRepository.save(user);
+	}
 
 }
