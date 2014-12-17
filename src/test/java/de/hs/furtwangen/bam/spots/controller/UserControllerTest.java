@@ -27,6 +27,7 @@ import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.hs.furtwangen.bam.spots.model.User;
+import de.hs.furtwangen.bam.spots.service.SpotService;
 import de.hs.furtwangen.bam.spots.service.UserService;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -41,11 +42,14 @@ public class UserControllerTest {
 	private UserService userService;
 	
 	@Mock
+	private SpotService spotService;
+	
+	@Mock
 	private PasswordEncoder passwordEncoder;
 
 	@Before
 	public void setUp() throws Exception {
-		 mockMvc = MockMvcBuilders.standaloneSetup(new UserController(userService,passwordEncoder))
+		 mockMvc = MockMvcBuilders.standaloneSetup(new UserController(userService, spotService, passwordEncoder))
 	                .build();
 	}
 
