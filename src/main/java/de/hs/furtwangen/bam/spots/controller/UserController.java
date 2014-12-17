@@ -96,6 +96,7 @@ public class UserController {
 	public void editUser(@RequestBody User user) {
 		System.out.println("user to be changed: " + user);
 		
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userService.save(user);
 	}
 
@@ -122,5 +123,5 @@ public class UserController {
 		}
 		return new UserTransfer("no User found");
 	}
-
+	
 }
