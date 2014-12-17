@@ -137,4 +137,12 @@ public class UserController {
 		spotService.createSpot(spot);
 	}
 	
+	@RequestMapping(value = "/editSpot", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+	public void editSpot(@RequestBody Spot spot) {
+		System.out.println("spot to be changed: " + spot);
+		
+		spotService.save(spot);
+	}
+	
 }
