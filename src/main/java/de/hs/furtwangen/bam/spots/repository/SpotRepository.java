@@ -8,6 +8,4 @@ public interface SpotRepository extends CrudRepository<Spot, Long>{
 
 	public Spot findByName(String name);
 	
-	public Spot findOne(int id);
-	
 }

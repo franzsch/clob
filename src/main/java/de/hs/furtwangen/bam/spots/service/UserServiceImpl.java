@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Transactional(readOnly=true)
 	@Override
-	public User findOne(int id){
+	public User findOne(long id){
 		return userRepository.findOne(id);
 	}
 	

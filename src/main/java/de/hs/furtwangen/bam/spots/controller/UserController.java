@@ -24,10 +24,10 @@ import de.hs.furtwangen.bam.spots.service.UserService;
 public class UserController {
 
 	@Autowired
-	private final UserService userService;
+	private UserService userService;
 	
 	@Autowired
-	private final SpotService spotService;
+	private SpotService spotService;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
