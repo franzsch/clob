@@ -35,6 +35,8 @@
 		<security:intercept-url pattern="/lib/**" access="permitAll" />
 		<security:intercept-url pattern="/style.css" access="permitAll" />
 		<security:intercept-url pattern="/webjars/**" access="permitAll" />
+		
+		<security:intercept-url pattern="/version" access="permitAll" />
 
 		<security:intercept-url pattern="/user/authenticate" access="permitAll" />
 		<security:intercept-url pattern="/user/addUser" access="permitAll" />
