@@ -23,7 +23,13 @@ module.exports = function (config) {
 
         proxies: {
             '/': 'http://localhost:8080/'
-        }
+        },    
+    
+        singleRun: true,
+        reporters: ['dots', 'junit'],
+        junitReporter: {
+          outputFile: 'e2e-results.xml'
+        },
 
     });
 };

@@ -7,3 +7,4 @@ bin/
 *.iml
 node_modules/
 src/main/resources/git.properties
+*-results.xml
