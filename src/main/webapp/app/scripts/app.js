@@ -20,6 +20,8 @@ var app = angular.module('spotsApp',['ngRoute', 'ngCookies', 'spotsAppServices']
 
 	  $routeProvider.when('/home', { templateUrl: 'partials/home.html', controller: HomeController});
 	  
+	  $routeProvider.when('/profileEdit', { templateUrl: 'partials/profileEdit.html', controller: ProfileEditController});
+	  
 	  
 	    
 	  $routeProvider.otherwise({redirectTo: '/'});
@@ -205,9 +207,13 @@ function SpotsCreateController (){
 	
 };
 
+function ProfileEditController (){
+	
+};
+
 function HomeController(){
 	
-}
+};
 
 var services = angular.module('spotsAppServices', ['ngResource']);
 
