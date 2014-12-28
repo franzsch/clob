@@ -8,6 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Location entity.
  * 
@@ -33,6 +35,7 @@ public class Location extends BaseEntity implements Serializable {
 	@Column(name = "type")
 	private String type;
 
+	@JsonIgnore
 	@OneToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
 	private Spot spot;

@@ -23,6 +23,8 @@ import javax.persistence.Transient;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity(name = "users")
 public class User extends BaseEntity implements Serializable, UserDetails {
 
@@ -52,6 +54,7 @@ public class User extends BaseEntity implements Serializable, UserDetails {
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
+	@JsonIgnore
 	private Advertisement advertisement;
 	
 

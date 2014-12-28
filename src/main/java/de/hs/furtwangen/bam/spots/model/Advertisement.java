@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Advertisement entity.
  *
@@ -24,6 +26,7 @@ public class Advertisement extends BaseEntity implements Serializable {
 	
 	@ManyToOne
     @JoinColumn(name = "spot_spotId")
+	@JsonIgnore
     private Spot spot;
 	
 	@OneToOne(cascade = CascadeType.ALL)
