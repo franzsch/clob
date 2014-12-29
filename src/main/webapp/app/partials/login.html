@@ -4,19 +4,19 @@
 		<form class="form-signin" role="form">
 			<div class="alert alert-danger" role="alert" ng-show="authMessage">{{authMessage}}</div>		
 		
-			<h2 class="form-signin-heading">Please login</h2>
+			<h2 class="form-signin-heading">Bitte anmelden</h2>
 			<label for="inputFieldEmail" class="sr-only">E-Mail</label> <input
 				type="text" id="eingabefeldEmail" ng-model="user.username" class="form-control"
 				placeholder="E-Mail" required autofocus> <label
-				for="nputFieldPassword" class="sr-only">Password</label> <input
+				for="nputFieldPassword" class="sr-only">Passwort</label> <input
 				type="password" id="eingabefeldPasswort" ng-model="user.password" class="form-control"
 				placeholder="Password" required>
 			<div class="checkbox">
 				<label><input type="checkbox" ng-model="rememberMe">
-					remember data
+					angemeldet bleiben
 				</label>
 			</div>
-			<input type="submit" value="Login" class="btn btn-primary" ng-click="login()"/>
+			<input type="submit" value="Anmelden" class="btn btn-primary" ng-click="login()"/>
 		</form>
 	</div>
 

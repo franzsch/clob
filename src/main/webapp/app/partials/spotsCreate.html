@@ -3,20 +3,21 @@
 <form class="form-horizontal" role="form" novalidate>
 
 	<div class="form-group">
-		<label for="inputFieldSpotName" class="col-sm-2 control-label email-label">Spot Bezeichnung</label>
+		<label for="inputFieldSpotName"
+			class="col-sm-2 control-label email-label">Spot Bezeichnung</label>
 		<div class="col-sm-10">
 			<input ng-model="spot.name" type="text"
 				class="form-control ng-dirty ng-invalid" required
 				id="inputFieldSpotName" placeholder="Spot Bezeichnung" />
 		</div>
 	</div>
-	
+
 	<div class="form-group">
-		<label for="inputFieldLocationName" class="col-sm-2 control-label">Location Name</label>
+		<label for="inputFieldLocationName" class="col-sm-2 control-label">Name der Örtlichkeit</label>
 		<div class="col-sm-10">
 			<input ng-model="spot.location.name" type="text"
 				class="form-control ng-dirty ng-invalid" required
-				id="inputFieldLocationName" placeholder="Location Name" />
+				id="inputFieldLocationName" placeholder="Name der Örtlichkeit" />
 		</div>
 	</div>
 
@@ -33,17 +34,17 @@
 		<label for="inputFieldTown" class="col-sm-2 control-label">Ort</label>
 		<div class="col-sm-10">
 			<input ng-model="spot.location.town" type="text"
-				class="form-control ng-dirty ng-invalid" required 
+				class="form-control ng-dirty ng-invalid" required
 				id="inputFieldTown" placeholder="Ort" />
 		</div>
 	</div>
-	
+
 	<div class="form-group">
-		<label for="inputFieldLocationType" class="col-sm-2 control-label">Location Type</label>
+		<label for="inputFieldLocationType" class="col-sm-2 control-label">Ortstyp</label>
 		<div class="col-sm-10">
 			<input ng-model="spot.location.type" type="text"
-				class="form-control ng-dirty ng-invalid" required 
-				id="inputFieldLocationType" placeholder="Location Type" />
+				class="form-control ng-dirty ng-invalid" required
+				id="inputFieldLocationType" placeholder="Ortstyp" />
 		</div>
 	</div>
 
@@ -51,14 +52,16 @@
 		<label for="inputFieldCountry" class="col-sm-2 control-label">Land</label>
 		<div class="col-sm-10">
 			<input ng-model="spot.location.country" type="text"
-				class="form-control ng-dirty ng-invalid" required 
+				class="form-control ng-dirty ng-invalid" required
 				id="inputFieldCountry" placeholder="Land" />
 		</div>
 	</div>
 
-	
-	
-	<button type="submit" ng-click="send(spot)" class="btn btn-default">Commit</button>
-	
+
+
+	<button type="submit" ng-click="send(spot)" class="btn btn-primary">
+		<span class="glyphicon glyphicon-ok"></span> Speichern
+	</button>
+
 </form>
 

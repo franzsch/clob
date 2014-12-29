@@ -13,16 +13,16 @@
 	</div>
 
 	<div class="form-group">
-		<label for="inputFieldUsername" class="col-sm-2 control-label">Username</label>
+		<label for="inputFieldUsername" class="col-sm-2 control-label">Benutzername</label>
 		<div class="col-sm-10">
 			<input ng-model="user.username" type="text"
 				class="form-control ng-dirty ng-invalid" required
-				id="inputFieldUsername" placeholder="Username" />
+				id="inputFieldUsername" placeholder="Benutzername" />
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label for="inputFieldPassword" class="col-sm-2 control-label">Password</label>
+		<label for="inputFieldPassword" class="col-sm-2 control-label">Passwort</label>
 		<div class="col-sm-10">
 			<input ng-model="user.password" type="password"
 				class="form-control ng-dirty ng-invalid" required 
@@ -31,34 +31,36 @@
 	</div>
 
 	<div class="form-group">
-		<label for="inputFieldPassword1" class="col-sm-2 control-label">Password</label>
+		<label for="inputFieldPassword1" class="col-sm-2 control-label">Passwort wiederholen</label>
 		<div class="col-sm-10">
 			<input ng-model="user.password1" type="password"
 				class="form-control ng-dirty ng-invalid" required 
-				id="inputFieldPassword1" placeholder="repeat Password" />
+				id="inputFieldPassword1" placeholder="Passwort wiederholen" />
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label for="inputFieldFirstname" class="col-sm-2 control-label">Firstname</label>
+		<label for="inputFieldFirstname" class="col-sm-2 control-label">Vorname</label>
 		<div class="col-sm-10">
 			<input ng-model="user.firstname" type="text"
 				class="form-control ng-dirty ng-invalid" required
-				id="inputFieldFirstname" placeholder="Firstname" />
+				id="inputFieldFirstname" placeholder="Vorname" />
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="inputFieldLastname" class="col-sm-2 control-label">Lastname</label>
+		<label for="inputFieldLastname" class="col-sm-2 control-label">Nachname</label>
 		<div class="col-sm-10">
 			<input ng-model="user.lastname" type="text"
 				class="form-control ng-dirty ng-invalid" required
-				id="inputFieldLastname" placeholder="Lastname" />
+				id="inputFieldLastname" placeholder="Nachname" />
 		</div>
 	</div>
 	
 	<div>Valide? {{registerUserForm.$valid}}</div>
 	
-	<button type="submit" ng-click="send(user)" class="btn btn-default">Commit</button>
+	<button type="submit" ng-click="send(user)" class="btn btn-primary">
+				<span class="glyphicon glyphicon-ok"></span> Speichern
+			</button>
 	
 </form>
 
