@@ -199,13 +199,21 @@ function ProfileController($scope,$log, $http)
 
 function SpotsController(){
 	
+	
 };
 
 function SpotsSearchController(){
 	
 };
 
-function SpotsCreateController (){
+function SpotsCreateController ($scope, $log, $http){
+	$scope.send = function(spot){
+		$log.info('spot '+JSON.stringify(spot));
+		
+		$http.post('/spot/createSpot',spot);
+		
+		$location.path("/");
+	};
 	
 };
 

@@ -55,7 +55,6 @@ public class Spot extends BaseEntity implements Serializable {
 	}
 
 	public void setLocation(Location location) {
-		System.out.println("Location "+location.getName());
 		this.location = location;
 	}
 
@@ -82,5 +81,13 @@ public class Spot extends BaseEntity implements Serializable {
 	public void setAdvertisements(Set<Advertisement> advertisements) {
 		this.advertisements = advertisements;
 	}
+
+	@Override
+	public String toString() {
+		return "Spot [name=" + name + ", location=" + location
+				+ ", activities=" + activities + "]";
+	}
+	
+	
 
 }

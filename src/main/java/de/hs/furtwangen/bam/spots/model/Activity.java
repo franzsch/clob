@@ -53,4 +53,11 @@ public class Activity extends BaseEntity implements Serializable {
 		this.spot = spot;
 	}
 
+	@Override
+	public String toString() {
+		return "Activity [name=" + name + ", rating=" + rating + "]";
+	}
+	
+	
+
 }

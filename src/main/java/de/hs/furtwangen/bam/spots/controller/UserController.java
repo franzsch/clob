@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import de.hs.furtwangen.bam.spots.model.Spot;
 import de.hs.furtwangen.bam.spots.model.User;
-import de.hs.furtwangen.bam.spots.service.SpotService;
 import de.hs.furtwangen.bam.spots.service.UserService;
 
 @RestController
@@ -26,17 +24,15 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private SpotService spotService;
+	
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	@Autowired
-	public UserController(UserService userService, SpotService spotService, 
+	public UserController(UserService userService, 
 			PasswordEncoder passwordEncoder) {
 		this.userService = userService;
-		this.spotService = spotService;
 		this.passwordEncoder = passwordEncoder;
 	}
 
@@ -130,19 +126,6 @@ public class UserController {
 		return new UserTransfer("no User found");
 	}
 
-	@RequestMapping(value = "/createSpot", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.CREATED)
-	public void createSpot(@RequestBody Spot spot) {
-		System.out.println("spot to be added: " + spot);
-		spotService.createSpot(spot);
-	}
 	
-	@RequestMapping(value = "/editSpot", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.CREATED)
-	public void editSpot(@RequestBody Spot spot) {
-		System.out.println("spot to be changed: " + spot);
-		
-		spotService.save(spot);
-	}
 	
 }

@@ -91,4 +91,12 @@ public class Location extends BaseEntity implements Serializable {
 		return this.spot;
 	}
 
+	@Override
+	public String toString() {
+		return "Location [name=" + name + ", country=" + country + ", street="
+				+ street + ", town=" + town + ", type=" + type + "]";
+	}
+	
+	
+
 }
