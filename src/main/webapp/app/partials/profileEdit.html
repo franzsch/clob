@@ -1,5 +1,7 @@
 <h3>Profil bearbeiten</h3>
 
+	<input ng-model="user.id" type="hidden"/>
+
 <form class="form-horizontal">
 	<div class="form-group">
 		<label for="inputFieldFirstname" class="col-sm-2 control-label">Vornamen bearbeiten</label>
@@ -58,7 +60,7 @@
 
 	<div class="form-group">
 		<div class="col-sm-10 col-sm-offset-2">
-			<button type="submit" class="btn btn-primary" ng-click="save()">
+			<button type="submit" class="btn btn-primary" ng-click="send()">
 				<span class="glyphicon glyphicon-ok"></span> Speichern
 			</button>
 		</div>

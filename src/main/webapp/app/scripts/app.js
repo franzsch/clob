@@ -219,6 +219,26 @@ function SpotsCreateController ($scope, $log, $http){
 
 function ProfileEditController ($scope, $log, $http){
 	
+	$scope.user;
+	
+	$http.get('/user/user/').
+	  success(function(data, status, headers, config) {
+		  $log.info('data '+JSON.stringify(data));
+		  $scope.user = data;
+		  $scope.user.password = '';
+		  
+	    // this callback will be called asynchronously
+	    // when the response is available
+	  }).
+	  error(function(data, status, headers, config) {
+	    // called asynchronously if an error occurs
+	    // or server returns response with an error status.
+	  });
+	
+	$scope.send = function(){
+		$http.post('/user/editUser',$scope.user);
+	};
+	
 };
 
 function SpotEditController ($scope, $log, $http, $routeParams){
