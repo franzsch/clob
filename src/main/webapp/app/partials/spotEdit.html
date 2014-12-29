@@ -2,6 +2,8 @@
 
 <form class="form-horizontal" role="form" novalidate>
 
+	<input ng-model="spot.id" type="hidden"/>
+
 	<div class="form-group">
 		<label for="inputFieldSpotName" class="col-sm-2 control-label email-label">Spot Bezeichnung</label>
 		<div class="col-sm-10">
@@ -12,18 +14,18 @@
 	</div>
 
 	<div class="form-group">
-		<label for="inputFieldStreet" class="col-sm-2 control-label">Straﬂe</label>
+		<label for="inputFieldStreet" class="col-sm-2 control-label">Stra&szlig;e</label>
 		<div class="col-sm-10">
-			<input ng-model="spot.street" type="text"
+			<input ng-model="spot.location.street" type="text"
 				class="form-control ng-dirty ng-invalid" 
-				id="inputFieldStreet" placeholder="Straﬂe" />
+				id="inputFieldStreet" placeholder="Stra&szlig;e" />
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label for="inputFieldTown" class="col-sm-2 control-label">Ort</label>
 		<div class="col-sm-10">
-			<input ng-model="spot.town" type="password"
+			<input ng-model="spot.location.town" type="text"
 				class="form-control ng-dirty ng-invalid"  
 				id="inputFieldTown" placeholder="Ort" />
 		</div>
@@ -32,24 +34,15 @@
 	<div class="form-group">
 		<label for="inputFieldCountry" class="col-sm-2 control-label">Land</label>
 		<div class="col-sm-10">
-			<input ng-model="spot.country" type="password"
+			<input ng-model="spot.location.country" type="text"
 				class="form-control ng-dirty ng-invalid"  
 				id="inputFieldCountry" placeholder="Land" />
-		</div>
-	</div>
-
-	<div class="form-group">
-		<label for="inputFieldActivity" class="col-sm-2 control-label">Aktivit‰t</label>
-		<div class="col-sm-10">
-			<input ng-model="spot.activity" type="text"
-				class="form-control ng-dirty ng-invalid" 
-				id="inputFieldActivity" placeholder="z.B. Tauchen, Rodeln, Wandern" />
 		</div>
 	</div>
 	
 	<div class="form-group">
 		<div class="col-sm-10 col-sm-offset-2">
-			<button type="submit" class="btn btn-primary" ng-click="save()">
+			<button type="submit" class="btn btn-primary" ng-click="send()">
 				<span class="glyphicon glyphicon-ok"></span> Speichern
 			</button>
 		</div>

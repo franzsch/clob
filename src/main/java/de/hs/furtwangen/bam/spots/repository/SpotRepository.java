@@ -4,7 +4,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import de.hs.furtwangen.bam.spots.model.Spot;
 
-public interface SpotRepository extends CrudRepository<Spot, Long>{
+public interface SpotRepository extends CrudRepository<Spot, Integer>{
 
 	public Spot findByName(String name);
 	

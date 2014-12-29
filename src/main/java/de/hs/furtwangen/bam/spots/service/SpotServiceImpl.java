@@ -24,6 +24,12 @@ public class SpotServiceImpl implements SpotService {
 	public void save(Spot spot) {
 		spotRepository.save(spot);
 	}
+	
+	@Transactional(readOnly=true)
+	@Override
+	public Spot findOne(Integer id){
+		return spotRepository.findOne(id);
+	}
 
 	
 	

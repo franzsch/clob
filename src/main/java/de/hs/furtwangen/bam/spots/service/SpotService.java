@@ -7,5 +7,7 @@ public interface SpotService {
 	public Spot createSpot(Spot spot);
 	
 	public void save(Spot spot);
+	
+	public Spot findOne(Integer id);
 
 }

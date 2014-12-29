@@ -42,6 +42,8 @@
 		<security:intercept-url pattern="/user/addUser" access="permitAll" />
 		<security:intercept-url pattern="/user/username" access="isAuthenticated()" />
 		<security:intercept-url pattern="/user/user" access="isAuthenticated()" />
+		
+		<security:intercept-url pattern="/spot/**" access="isAuthenticated()" />
 	</security:http>
 
 	<bean id="unauthorizedEntryPoint"

@@ -22,7 +22,7 @@ var app = angular.module('spotsApp',['ngRoute', 'ngCookies', 'spotsAppServices']
 	  
 	  $routeProvider.when('/profileEdit', { templateUrl: 'partials/profileEdit.html', controller: ProfileEditController});
 	  
-	  $routeProvider.when('/spotEdit', { templateUrl: 'partials/spotEdit.html', controller: SpotEditController});
+	  $routeProvider.when('/spotEdit/:spotId', { templateUrl: 'partials/spotEdit.html', controller: SpotEditController});
 	  
 	  
 	    
@@ -217,12 +217,32 @@ function SpotsCreateController ($scope, $log, $http){
 	
 };
 
-function ProfileEditController (){
+function ProfileEditController ($scope, $log, $http){
 	
 };
 
-function SpotEditController (){
+function SpotEditController ($scope, $log, $http, $routeParams){
 	
+	var spotId = $routeParams.spotId;
+	
+	$scope.spot;
+	
+	$http.get('/spot/spot/'+spotId).
+	  success(function(data, status, headers, config) {
+		  $log.info('data '+JSON.stringify(data));
+		  $scope.spot = data;
+		  
+	    // this callback will be called asynchronously
+	    // when the response is available
+	  }).
+	  error(function(data, status, headers, config) {
+	    // called asynchronously if an error occurs
+	    // or server returns response with an error status.
+	  });
+	
+	$scope.send = function(){
+		$http.post('/spot/editSpot',$scope.spot);
+	};
 };
 
 function HomeController(){
