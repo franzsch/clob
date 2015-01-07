@@ -197,8 +197,21 @@ function ProfileController($scope,$log, $http)
 	
 };
 
-function SpotsController(){
+function SpotsController($scope, $log, $http){
+	$scope.spots;
 	
+	$http.get('/spot/spots').
+	  success(function(data, status, headers, config) {
+		  $log.info('data '+JSON.stringify(data));
+		  $scope.spots = data;
+		  
+	    // this callback will be called asynchronously
+	    // when the response is available
+	  }).
+	  error(function(data, status, headers, config) {
+	    // called asynchronously if an error occurs
+	    // or server returns response with an error status.
+	  });
 	
 };
 

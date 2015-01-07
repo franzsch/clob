@@ -1,8 +1,18 @@
-<h3>Spots</h3>
+<h3>Spot &Uuml;berblick</h3>
 
-<a class="btn btn-primary" href="#/spots" role="button">Spots ansehen</a>
-
-<a class="btn btn-primary" href="#/spotsCreate" role="button">Spot anlegen</a>
-
-<a class="btn btn-primary" href="#/spotEdit" role="button">Spot bearbeiten</a>
+<table class="table">
+	<caption></caption>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Spot bearbeiten</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="spot in spots">
+			<td>{{spot.name}}</td>
+			<td><a ng-href="#/spotEdit/{{spot.id}}">Spot bearbeiten</a></td>
+		</tr>
+	</tbody>
+</table>
 

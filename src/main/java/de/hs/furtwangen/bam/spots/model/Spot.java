@@ -7,10 +7,13 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Spot entity.
@@ -21,23 +24,26 @@ import javax.persistence.OneToOne;
 public class Spot extends BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = -8602561360329162570L;
-	
+
 	@Column(name = "name")
 	private String name;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Location location;
 
+	@JsonIgnore
 	@ManyToOne
-    @JoinColumn(name = "user_userId")
-    private User user;
+	@JoinColumn(name = "user_userId")
+	private User user;
 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "spot")
-    private Set<Activity> activities = new HashSet<Activity>();
-	
+	private Set<Activity> activities = new HashSet<Activity>();
+
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "spot")
-    private Set<Advertisement> advertisements = new HashSet<Advertisement>();
-	
+	private Set<Advertisement> advertisements = new HashSet<Advertisement>();
+
 	public Spot() {
 		this.location = new Location();
 	}
@@ -87,7 +93,5 @@ public class Spot extends BaseEntity implements Serializable {
 		return "Spot [name=" + name + ", location=" + location
 				+ ", activities=" + activities + "]";
 	}
-	
-	
 
 }

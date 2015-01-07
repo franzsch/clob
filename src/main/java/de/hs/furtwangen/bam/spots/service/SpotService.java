@@ -9,5 +9,7 @@ public interface SpotService {
 	public void save(Spot spot);
 	
 	public Spot findOne(Integer id);
+	
+	public Iterable<Spot> findAll();
 
 }

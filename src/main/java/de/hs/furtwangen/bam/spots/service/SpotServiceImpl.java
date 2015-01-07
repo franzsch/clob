@@ -30,6 +30,12 @@ public class SpotServiceImpl implements SpotService {
 	public Spot findOne(Integer id){
 		return spotRepository.findOne(id);
 	}
+	
+	@Transactional(readOnly=true)
+	@Override
+	public Iterable<Spot> findAll(){
+		return spotRepository.findAll();
+	}
 
 	
 	

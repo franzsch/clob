@@ -47,5 +47,12 @@ public class SpotController {
 		return spot;
 	}
 	
+	@RequestMapping(value = "/spots", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.CREATED)
+	public Iterable<Spot> getAllSpots(){
+		
+		return spotService.findAll();
+	}
+	
 
 }
