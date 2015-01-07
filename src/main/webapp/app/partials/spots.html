@@ -5,12 +5,14 @@
 	<thead>
 		<tr>
 			<th>Name</th>
+			<th>Spot anzeigen</th>
 			<th>Spot bearbeiten</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="spot in spots">
 			<td>{{spot.name}}</td>
+			<td><a ng-href="#/spotShow/{{spot.id}}">Spot anzeigen</a></td>
 			<td><a ng-href="#/spotEdit/{{spot.id}}">Spot bearbeiten</a></td>
 		</tr>
 	</tbody>

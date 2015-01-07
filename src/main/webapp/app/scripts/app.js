@@ -5,24 +5,25 @@ var app = angular.module('spotsApp',['ngRoute', 'ngCookies', 'spotsAppServices']
   app.config(['$routeProvider', '$locationProvider', '$httpProvider', 
               function ($routeProvider, $locationProvider, $httpProvider) 
   {
+	  $routeProvider.when('/home', { templateUrl: 'partials/home.html', controller: HomeController});
 	   	
 	  $routeProvider.when('/register', { templateUrl: 'partials/register.html', controller: RegisterController});
 	    
 	  $routeProvider.when('/login', { templateUrl: 'partials/login.html', controller: LoginController});
 	  
 	  $routeProvider.when('/profile', { templateUrl: 'partials/profile.html', controller: ProfileController});
+	  
+	  $routeProvider.when('/profileEdit', { templateUrl: 'partials/profileEdit.html', controller: ProfileEditController});
 
 	  $routeProvider.when('/spots', { templateUrl: 'partials/spots.html', controller: SpotsController});
 	  
 	  $routeProvider.when('/spotSearch', { templateUrl: 'partials/spotsSearch.html', controller: SpotsSearchController});
 	  
-	  $routeProvider.when('/spotsCreate', { templateUrl: 'partials/spotsCreate.html', controller: SpotsCreateController});
-
-	  $routeProvider.when('/home', { templateUrl: 'partials/home.html', controller: HomeController});
-	  
-	  $routeProvider.when('/profileEdit', { templateUrl: 'partials/profileEdit.html', controller: ProfileEditController});
+	  $routeProvider.when('/spotsCreate', { templateUrl: 'partials/spotsCreate.html', controller: SpotsCreateController}); 
 	  
 	  $routeProvider.when('/spotEdit/:spotId', { templateUrl: 'partials/spotEdit.html', controller: SpotEditController});
+	  
+	  $routeProvider.when('/spotShow/:spotId', { templateUrl: 'partials/spotShow.html', controller: SpotShowController});
 	  
 	  
 	    
@@ -277,6 +278,28 @@ function SpotEditController ($scope, $log, $http, $routeParams){
 		$http.post('/spot/editSpot',$scope.spot);
 	};
 };
+
+
+
+function SpotShowController ($scope, $log, $http, $routeParams){
+	
+	var spotId = $routeParams.spotId;
+	
+	$scope.spot;
+
+	$http.get('/spot/spot/'+spotId).
+		success(function(data, status, headers, config) {
+			$log.info('data '+JSON.stringify(data));
+			$scope.spot = data;
+	  
+			// this callback will be called asynchronously
+			// when the response is available
+		}).
+		error(function(data, status, headers, config) {
+			// called asynchronously if an error occurs
+			// or server returns response with an error status.
+		});
+}
 
 function HomeController(){
 	
