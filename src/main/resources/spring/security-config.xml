@@ -44,6 +44,7 @@
 		<security:intercept-url pattern="/user/user" access="isAuthenticated()" />
 		
 		<security:intercept-url pattern="/spot/**" access="isAuthenticated()" />
+		<security:intercept-url pattern="/activity/**" access="isAuthenticated()" />
 	</security:http>
 
 	<bean id="unauthorizedEntryPoint"

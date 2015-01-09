@@ -286,6 +286,7 @@ function SpotShowController ($scope, $log, $http, $routeParams){
 	var spotId = $routeParams.spotId;
 	
 	$scope.spot;
+	$scope.activities;
 
 	$http.get('/spot/spot/'+spotId).
 		success(function(data, status, headers, config) {
@@ -299,6 +300,19 @@ function SpotShowController ($scope, $log, $http, $routeParams){
 			// called asynchronously if an error occurs
 			// or server returns response with an error status.
 		});
+	
+	$http.get('/activity/activities/'+spotId).
+	success(function(data, status, headers, config) {
+		$log.info('data '+JSON.stringify(data));
+		$scope.activities = data;
+  
+		// this callback will be called asynchronously
+		// when the response is available
+	}).
+	error(function(data, status, headers, config) {
+		// called asynchronously if an error occurs
+		// or server returns response with an error status.
+	});
 }
 
 function HomeController(){

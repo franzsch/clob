@@ -5,7 +5,9 @@
 		<div class="col-md-2">
 			<p>Spot bezeichnung:</p>
 		</div>
-		<div class="col-md-2"><p>{{spot.name}}</p></div>
+		<div class="col-md-2">
+			<p>{{spot.name}}</p>
+		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-2">
@@ -25,4 +27,24 @@
 		</div>
 		<div class="col-md-2">{{spot.location.country}}</div>
 	</div>
+	<div class="row">
+		<div class="col-md-2">
+			<p>Ortstyp:</p>
+		</div>
+		<div class="col-md-2">{{spot.location.type}}</div>
+	</div>
+	<table class="table">
+		<caption>Aktivitäten am Spot</caption>
+		<thead>
+			<tr>
+				<th>Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="activity in activities">
+				<td>{{activity.name}}</td>
+			</tr>
+		</tbody>
+	</table>
+
 </div>
