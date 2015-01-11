@@ -71,6 +71,8 @@
 		<webjars-bootstrap.version>3.3.0</webjars-bootstrap.version>
 		<webjars-jquery-ui.version>1.11.1</webjars-jquery-ui.version>
 		<webjars-jquery.version>2.1.1</webjars-jquery.version>
+		
+		 <findbugs.version>2.5.2</findbugs.version>
 
 	</properties>
 
@@ -503,7 +505,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 
 			<!-- Git Commit Plugin -->
 			<plugin>
@@ -603,8 +605,25 @@
 				</configuration>
 			</plugin>
 
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>${findbugs.version}</version>
+			</plugin>
+
+
 		</plugins>
 	</build>
+	
+	<reporting>
+     <plugins>
+        <plugin>
+           <groupId>org.codehaus.mojo</groupId>
+           <artifactId>findbugs-maven-plugin</artifactId>
+           <version>${findbugs.version}</version>
+        </plugin>
+      </plugins>
+   </reporting>
 
 
 	<profiles>
