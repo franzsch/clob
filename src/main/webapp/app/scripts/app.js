@@ -76,7 +76,7 @@ var app = angular.module('spotsApp',['ngRoute', 'ngCookies', 'spotsAppServices']
 	   
 	} ]
 	
-).run(function($rootScope, $location, $cookieStore, UserService) {
+).run(function($rootScope, $location, $cookieStore, UserService) {	
 	
 	/* Reset error when a new view is loaded */
 	$rootScope.$on('$viewContentLoaded', function() {
@@ -143,6 +143,19 @@ function LoginController($scope, $rootScope, $location, $cookieStore, UserServic
 	
 	$scope.authMessage;
 	
+	$http.get('/version').
+	  success(function(data, status, headers, config) {
+		  $log.info('data '+JSON.stringify(data));
+		  $rootScope.version = data;
+		  
+	    // this callback will be called asynchronously
+	    // when the response is available
+	  }).
+	  error(function(data, status, headers, config) {
+	    // called asynchronously if an error occurs
+	    // or server returns response with an error status.
+	  });
+	
 	$scope.login = function() 
 	{
 		$scope.user.username;
@@ -171,7 +184,7 @@ function LoginController($scope, $rootScope, $location, $cookieStore, UserServic
 					$location.path("/");
 				});
 			}
-		
+			
         });
 		
 	};

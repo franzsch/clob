@@ -74,8 +74,8 @@
 
 	<!-- Footer -->
 	<footer class="footer">
-		<div class="container">
-			<p class="text-muted">Adventurespots 2014</p>
+			<div class="container" ng-repeat="ver in version | filter:'git.commit.id.describe-short'">	
+			<p class="text-muted">Adventurespots 2014  Version:{{ver.value}}</p>
 		</div>
 	</footer>
 
