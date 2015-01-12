@@ -23,8 +23,6 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
-	
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -125,7 +123,13 @@ public class UserController {
 		}
 		return new UserTransfer("no User found");
 	}
-
 	
+	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.ACCEPTED)
+	public void deleteUser(@RequestBody User user) {
+		System.out.println("user to be deleted: " + user.getId());
+		
+		userService.delete(user.getId());
+	}
 	
 }

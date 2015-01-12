@@ -15,6 +15,8 @@ var app = angular.module('spotsApp',['ngRoute', 'ngCookies', 'spotsAppServices']
 	  
 	  $routeProvider.when('/profileEdit', { templateUrl: 'partials/profileEdit.html', controller: ProfileEditController});
 
+	  $routeProvider.when('/profileDelete', { templateUrl: 'partials/profileDelete.html', controller: ProfileDeleteController});
+
 	  $routeProvider.when('/spots', { templateUrl: 'partials/spots.html', controller: SpotsController});
 	  
 	  $routeProvider.when('/spotSearch', { templateUrl: 'partials/spotsSearch.html', controller: SpotsSearchController});
@@ -190,7 +192,7 @@ function LoginController($scope, $rootScope, $location, $cookieStore, UserServic
 	};
 };
 
-function ProfileController($scope,$log, $http)
+function ProfileController($scope, $log, $http, $rootScope, $cookieStore, $location)
 {
 	$scope.user;
 	
@@ -207,7 +209,13 @@ function ProfileController($scope,$log, $http)
 	    // or server returns response with an error status.
 	  });
 	
-	
+	$scope.deleteUser = function(){
+		$http.post('/user/deleteUser',$scope.user);
+		delete $rootScope.user;
+		delete $rootScope.authToken;
+		$cookieStore.remove('authToken');
+		$location.path("/profileDelete");
+	};
 	
 };
 
@@ -330,6 +338,10 @@ function SpotShowController ($scope, $log, $http, $routeParams){
 }
 
 function HomeController(){
+	
+};
+
+function ProfileDeleteController(){
 	
 };
 
