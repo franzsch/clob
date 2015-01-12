@@ -212,6 +212,7 @@ function ProfileController($scope,$log, $http)
 };
 
 function SpotsController($scope, $log, $http){
+	
 	$scope.spots;
 	
 	$http.get('/spot/spots').
