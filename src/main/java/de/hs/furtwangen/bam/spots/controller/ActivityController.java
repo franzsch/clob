@@ -22,6 +22,8 @@ public class ActivityController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public Iterable<Activity> getAllActivitiesForSpot(@PathVariable Integer spotId)
 	{
+		System.out.println("Activity Id "+spotId);
+		
 		return activityService.findBySpotId(spotId);
 	}
 

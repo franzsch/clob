@@ -7,12 +7,14 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * Spot entity.
@@ -35,8 +37,8 @@ public class Spot extends BaseEntity implements Serializable {
 	@JoinColumn(name = "user_userId")
 	private User user;
 
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "spot")
+	@JsonManagedReference
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "spot",fetch = FetchType.EAGER)
 	private Set<Activity> activities = new HashSet<Activity>();
 
 	@JsonIgnore

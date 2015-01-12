@@ -41,7 +41,6 @@ public class SpotController {
 			
 		Spot spot = spotService.findOne(spotId);
 		spot.setUser(null);
-		spot.setActivities(null);
 		spot.setAdvertisements(null);
 		
 		return spot;
@@ -50,7 +49,7 @@ public class SpotController {
 	@RequestMapping(value = "/spots", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.CREATED)
 	public Iterable<Spot> getAllSpots(){
-		
+
 		return spotService.findAll();
 	}
 	
