@@ -242,13 +242,13 @@ function SpotsSearchController(){
 	
 };
 
-function SpotsCreateController ($scope, $log, $http){
+function SpotsCreateController ($scope, $log, $http,  $location){
 	$scope.send = function(spot){
 		$log.info('spot '+JSON.stringify(spot));
 		
 		$http.post('/spot/createSpot',spot);
 		
-		$location.path("/");
+		$location.path("/home");
 	};
 	
 };
