@@ -14,7 +14,7 @@
         </encoder>
     </appender>
 
-    <logger name="de.hs.furtwangen.bam.spots" level="debug"/>
+    <logger name="de.eier.clueb.spots" level="debug"/>
     
     <root level="info">
         <appender-ref ref="console"/>

@@ -48,9 +48,9 @@
 	</security:http>
 
 	<bean id="unauthorizedEntryPoint"
-		class="de.hs.furtwangen.bam.spots.controller.UnauthorizedEntryPoint" />
+		class="de.eier.clueb.controller.UnauthorizedEntryPoint" />
 				
-		<bean class="de.hs.furtwangen.bam.spots.controller.AuthenticationTokenProcessingFilter" id="authenticationTokenProcessingFilter" />
+		<bean class="de.eier.clueb.controller.AuthenticationTokenProcessingFilter" id="authenticationTokenProcessingFilter" />
 
 
 </beans>

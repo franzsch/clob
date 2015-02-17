@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>de.hs.furtwangen.spots</groupId>
-	<artifactId>adventurespots</artifactId>
+	<groupId>de.eier.clueb</groupId>
+	<artifactId>clob</artifactId>
 	<version>20131104</version>
 
-	<name>adventurespots</name>
+	<name>clob</name>
 	<packaging>war</packaging>
 
 	<properties>
@@ -486,7 +486,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.3</version>
 				<configuration>
-					<warName>adventurespots</warName>
+					<warName>clob</warName>
 				</configuration>
 			</plugin>
 			<plugin>

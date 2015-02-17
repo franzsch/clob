@@ -13,7 +13,7 @@
 	
 
 	<!-- - POJOs labeled with the @Controller and @Service annotations are auto-detected. -->
-	<context:component-scan base-package="de.hs.furtwangen.bam.spots.controller" />
+	<context:component-scan base-package="de.eier.clueb.controller" />
 
 	<mvc:annotation-driven />
 
