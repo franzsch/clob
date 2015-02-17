@@ -455,6 +455,7 @@
 					</includes>
 				</configuration>
 			</plugin>
+			<!-- 
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<version>1.7</version>
@@ -481,6 +482,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -648,7 +650,7 @@
 							<path>/</path>
 						</configuration>
 					</plugin>
-
+					<!-- 
 					<plugin>
 						<artifactId>maven-antrun-plugin</artifactId>
 						<version>1.7</version>
@@ -675,6 +677,7 @@
 							</execution>
 						</executions>
 					</plugin>
+					 -->
 				</plugins>
 			</build>
 
