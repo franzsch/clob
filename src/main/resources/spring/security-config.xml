@@ -33,7 +33,7 @@
 		<security:intercept-url pattern="/partials/**" access="permitAll" />
 		<security:intercept-url pattern="/scripts/**" access="permitAll" />
 		<security:intercept-url pattern="/lib/**" access="permitAll" />
-		<security:intercept-url pattern="/style.css" access="permitAll" />
+		<security:intercept-url pattern="/style/**" access="permitAll" />
 		<security:intercept-url pattern="/webjars/**" access="permitAll" />
 		
 		<security:intercept-url pattern="/version" access="permitAll" />
