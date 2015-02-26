@@ -4,26 +4,19 @@ import java.io.Serializable;
 import java.security.Permission;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Transient;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "users")
 public class User extends BaseEntity implements Serializable, UserDetails {
@@ -48,18 +41,7 @@ public class User extends BaseEntity implements Serializable, UserDetails {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_authority", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "authority_id"))
 	private List<Authority> authoritiesList = new ArrayList<Authority>();
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private Set<Spot> spots = new HashSet<Spot>();
-	
-	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
-	@JsonIgnore
-	private Advertisement advertisement;
-	
-
-	
-	
+		
 	public String getFirstname() {
 		return firstname;
 	}
@@ -120,28 +102,6 @@ public class User extends BaseEntity implements Serializable, UserDetails {
 				+ ", username=" + username + ", password=" + password
 				+ ", email=" + email + "]";
 	}
-
-	public Set<Spot> getSpots() {
-		return spots;
-	}
-
-	public void setSpots(Set<Spot> spots) {
-		this.spots = spots;
-	}
-	
-	public void add(Spot spot){
-		spots.add(spot);
-	}
-
-	public Advertisement getAdvertisement() {
-		return advertisement;
-	}
-
-	public void setAdvertisement(Advertisement advertisement) {
-		this.advertisement = advertisement;
-	}
-	
-
 
 	@Transient
 	public Set<Permission> getPermissions() {

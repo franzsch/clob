@@ -83,7 +83,6 @@ public class UserController {
 
 		if (authentication.getPrincipal() instanceof User) {
 			User user = (User) authentication.getPrincipal();
-			user.setSpots(null);
 
 			return user;
 		}
