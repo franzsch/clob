@@ -9,4 +9,4 @@ node_modules/
 src/main/resources/git.properties
 *-results.xml
 
-/.DS_Store
+.DS_Store
