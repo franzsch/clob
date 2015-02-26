@@ -23,7 +23,7 @@
 	<mvc:resources mapping="/partials/**" location="/app/partials/" />
 	<mvc:resources mapping="/scripts/**" location="/app/scripts/" />
 	<mvc:resources mapping="/lib/**" location="/app/lib/" />
-	<mvc:resources mapping="/style.css" location="/app/style.css" />
+	<mvc:resources mapping="/style/**" location="/app/style/">
 
 	<!-- uses WebJars so Javascript and CSS libs can be declared as Maven dependencies 
 		(Bootstrap, jQuery...) -->
