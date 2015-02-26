@@ -455,34 +455,6 @@
 					</includes>
 				</configuration>
 			</plugin>
-			<!-- 
-			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.7</version>
-				<executions>
-					<execution>
-						<id>jasmine-unit-tests</id>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<phase>test</phase>
-						<configuration>
-							<target name="building">
-								<exec executable="cmd" dir="\${project.basedir}/src/main/webapp"
-									osfamily="windows">
-									<arg line="/c karma start karma.conf.js" />
-								</exec>
-
-								<exec executable="karma" dir="\${project.basedir}/src/main/webapp"
-									osfamily="unix">
-									<arg line="start" />
-								</exec>
-							</target>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -650,34 +622,6 @@
 							<path>/</path>
 						</configuration>
 					</plugin>
-					<!-- 
-					<plugin>
-						<artifactId>maven-antrun-plugin</artifactId>
-						<version>1.7</version>
-						<executions>
-							<execution>
-								<id>e2e-tests</id>
-								<goals>
-									<goal>run</goal>
-								</goals>
-								<phase>integration-test</phase>
-								<configuration>
-									<target name="building">
-										<exec executable="cmd" dir="\${project.basedir}/src/main/webapp"
-											osfamily="windows">
-											<arg line="/c karma start karma-e2e.conf.js" />
-										</exec>
-
-										<exec executable="karma" dir="\${project.basedir}/src/main/webapp"
-											osfamily="unix">
-											<arg line="start" />
-										</exec>
-									</target>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					 -->
 				</plugins>
 			</build>
 
