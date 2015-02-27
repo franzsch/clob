@@ -11,19 +11,16 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 
 /**
  * 
- * @author Chris
- *	Rejects all Messsges with an Unauthorized Message
+ * Rejects all Messsages with an unauthorized Message
  */
 
-public class UnauthorizedEntryPoint implements AuthenticationEntryPoint
-{
+public class UnauthorizedEntryPoint implements AuthenticationEntryPoint {
 
 	@Override
-	public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
-			throws IOException, ServletException
-	{
-		response.sendError(
-				HttpServletResponse.SC_UNAUTHORIZED,
+	public void commence(HttpServletRequest request,
+			HttpServletResponse response, AuthenticationException authException)
+			throws IOException, ServletException {
+		response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
 				"Unauthorized: Authentication token was either missing or invalid.");
 	}
 

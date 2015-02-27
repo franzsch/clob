@@ -1,9 +1,9 @@
 package de.eier.clueb.controller;
 
 public class UserAuth {
-	
+
 	private String username;
-	
+
 	private String password;
 
 	public String getUsername() {
@@ -21,7 +21,5 @@ public class UserAuth {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
 
 }

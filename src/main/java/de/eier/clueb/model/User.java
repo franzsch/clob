@@ -25,23 +25,23 @@ public class User extends BaseEntity implements Serializable, UserDetails {
 
 	@Column(name = "firstname")
 	private String firstname;
-	
+
 	@Column(name = "lastname")
 	private String lastname;
 
 	@Column(unique = true)
 	private String username;
-	
+
 	@Column(name = "password")
 	private String password;
-	
+
 	@Column(name = "email")
 	private String email;
-		
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_authority", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "authority_id"))
 	private List<Authority> authoritiesList = new ArrayList<Authority>();
-		
+
 	public String getFirstname() {
 		return firstname;
 	}
@@ -85,16 +85,14 @@ public class User extends BaseEntity implements Serializable, UserDetails {
 	public List<Authority> getAuthoritiesList() {
 		return authoritiesList;
 	}
-	
-	public void add(Authority authority){
+
+	public void add(Authority authority) {
 		authoritiesList.add(authority);
 	}
 
 	public void setAuthoritiesList(List<Authority> authoritiesList) {
 		this.authoritiesList = authoritiesList;
 	}
-
-	
 
 	@Override
 	public String toString() {
@@ -105,15 +103,15 @@ public class User extends BaseEntity implements Serializable, UserDetails {
 
 	@Transient
 	public Set<Permission> getPermissions() {
-		//TODO
-	
+		// TODO
+
 		return null;
 	}
 
 	@Override
 	@Transient
 	public Collection<GrantedAuthority> getAuthorities() {
-		//TODO
+		// TODO
 		return null;
 	}
 
@@ -139,5 +137,5 @@ public class User extends BaseEntity implements Serializable, UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
-	
+
 }

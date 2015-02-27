@@ -19,7 +19,7 @@ public class Authority implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@NotNull
 	@NotEmpty
 	@Column(name = "name", unique = true)
