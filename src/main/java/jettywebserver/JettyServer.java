@@ -27,7 +27,6 @@ public class JettyServer
 		context.setBaseResource(resourceCollection);
 
 		context.setExtraClasspath("target/classes");
-		//SSD/Benutzer/christianhenle/git/Adventurespots/target/classes
 
 		HandlerCollection handlers = new HandlerCollection();
 		handlers.setHandlers(new Handler[] { context, new DefaultHandler() });
