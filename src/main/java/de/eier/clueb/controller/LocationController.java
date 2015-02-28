@@ -18,7 +18,7 @@ public class LocationController {
 	@Autowired
 	private LocationService locationService;
 	
-	@RequestMapping(value = "/location/{zip}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{zip}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.CREATED)
 	public Location getLocationByZip(@PathVariable int zip) {
 		System.out.println("Get Location/Town by Zip: " + zip);
