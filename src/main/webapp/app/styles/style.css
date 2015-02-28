@@ -5,9 +5,6 @@ html{
 body {
   padding-bottom: 40px;
   color: #5a5a5a;
-  background: url(/img/header.png);
-  background-position: center top;
-  background-repeat: no-repeat;
 }
 
 .navbar-wrapper {
@@ -16,6 +13,8 @@ body {
   right: 0;
   left: 0;
   z-index: 20;
+  background: #fff;
+  border-top: 1px solid lightgrey;
 }
 
 .navbar-wrapper > .container {
@@ -25,15 +24,17 @@ body {
 .navbar-wrapper .navbar {
   padding-right: 15px;
   padding-left: 15px;
-}
-.navbar-wrapper .navbar .container {
-  width: auto;
+  margin-bottom: 0px;
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
 }
 
 .header {
   height: 500px;
   margin-bottom: 60px;
   position: relative;
+  background: url(/img/frau.png) no-repeat;
+  margin-top: 155px;
 }
 
 .carousel-caption {
@@ -81,10 +82,29 @@ body {
   letter-spacing: -1px;
 }
 
+.navbar a {
+  color: #414141;
+  font-weight: 600;
+  font-family: "futura-pt";
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+
+.navbar-brand {
+  background: url(/img/logo.png);
+  text-indent: -9999px;
+  overflow: hidden;
+  display: block;
+  height: 62px;
+  width: 188px;
+  float: none;
+  margin: 20px auto !important;
+}
 
 @media (min-width: 768px) {
   .navbar-wrapper {
-    margin-top: 20px;
+    margin-top: 0px;
   }
   .navbar-wrapper .container {
     padding-right: 15px;
